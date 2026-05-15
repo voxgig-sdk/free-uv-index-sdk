@@ -1,0 +1,88 @@
+# Entity: uvi
+
+main: kit: entity: uvi: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "forecast"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "history"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "latitude"
+      req: true
+      type: "`$NUMBER`"
+    }
+    {
+      name: "longitude"
+      req: true
+      type: "`$NUMBER`"
+    }
+    {
+      name: "now"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "ok"
+      req: true
+      type: "`$ANY`"
+    }
+  ]
+
+  name: "uvi"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 40.6943
+                kind: "query"
+                name: "latitude"
+                orig: "latitude"
+                reqd: true
+                type: "`$NUMBER`"
+              }
+              {
+                example: -73.9249
+                kind: "query"
+                name: "longitude"
+                orig: "longitude"
+                reqd: true
+                type: "`$NUMBER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/uvi"
+          parts: [
+            "uvi"
+          ]
+          select: {
+            exist: [
+              "latitude"
+              "longitude"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

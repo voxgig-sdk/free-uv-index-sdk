@@ -1,0 +1,127 @@
+openapi: 3.1.0
+info:
+  title: Current UV Index API
+  description: |-
+    Free Global Real-time UV Index API without API Key, providing current UV Index and 5 day Hourly UV Index Forecast for the whole world.
+  termsOfService: https://currentuvindex.com/api
+  contact:
+    email: info@currentuvindex.com
+  license:
+    name: CC BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0
+  version: 1.1.0
+servers:
+  - url: https://currentuvindex.com/api/v1
+paths:
+  /uvi:
+    get:
+      description: Get the current UV Index and ~120 hour UV Index forecast.
+      parameters:
+        - name: latitude
+          in: query
+          description: The latitude of the location for which you want the UV Index.
+          required: true
+          schema:
+            type: number
+            minimum: -90
+            maximum: 90
+          example: 40.6943
+        - name: longitude
+          in: query
+          description: The longitude of the location for which you want the UV Index.
+          required: true
+          schema:
+            type: number
+            minimum: -180
+            maximum: 180
+          example: -73.9249
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    enum: [true]
+                  latitude:
+                    type: number
+                    description: Same as the latitude passed in the request.
+                    examples:
+                      - 40.6943
+                  longitude:
+                    type: number
+                    description: Same as the longitude passed in the request.
+                    examples:
+                      - -73.9249
+                  now:
+                    type: object
+                    description: Forecast for the current hour.
+                    properties:
+                      date:
+                        type: string
+                        format: date-time
+                      uvi:
+                        type: number
+                        examples:
+                          - 6.7
+                    required:
+                      - date
+                      - uvi
+                  forecast:
+                    type: array
+                    description: Forecast for the next ~120 hours.
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                          format: date-time
+                        uvi:
+                          type: number
+                          examples:
+                            - 8.5
+                      required:
+                        - date
+                        - uvi
+                  history:
+                    type: array
+                    description: Forecast for the past upto 24 hours.
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                          format: date-time
+                        uvi:
+                          type: number
+                          examples:
+                            - 7.5
+                      required:
+                        - date
+                        - uvi
+                required:
+                  - ok
+                  - latitude
+                  - longitude
+                  - now
+                  - forecast
+                  - history
+        '400':
+          description: Invalid latitude or longitude
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    enum: [false]
+                  message:
+                    type: string
+                    description: Error message.
+                    examples:
+                      - missing latitude
+                      - missing longitude
+                      - invalid latitude
+                      - invalid longitude

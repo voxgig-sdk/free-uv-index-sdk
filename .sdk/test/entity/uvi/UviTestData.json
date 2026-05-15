@@ -1,0 +1,42 @@
+{
+  "existing": {
+    "uvi": {
+      "UVI00": {
+        "forecast": [],
+        "history": [],
+        "latitude": 62,
+        "longitude": 63,
+        "now": {},
+        "ok": "s41"
+      },
+      "UVI01": {
+        "forecast": [],
+        "history": [],
+        "latitude": 122,
+        "longitude": 123,
+        "now": {},
+        "ok": "s7d"
+      },
+      "UVI02": {
+        "forecast": [],
+        "history": [],
+        "latitude": 182,
+        "longitude": 183,
+        "now": {},
+        "ok": "sb9"
+      }
+    }
+  },
+  "new": {
+    "uvi": {
+      "uvi_ref01": {
+        "forecast": [],
+        "history": [],
+        "latitude": 242,
+        "longitude": 243,
+        "now": {},
+        "ok": "sf5"
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+# BasicUviFlow
+
+main: kit: flow: BasicUviFlow:
+{
+  entity: "uvi",
+  kind: "basic",
+  name: "BasicUviFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "uvi_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicUviFlow"
+}
