@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/free-uv-index-sdk"
-	"github.com/voxgig-sdk/free-uv-index-sdk/core"
+	sdk "github.com/voxgig-sdk/free-uv-index-sdk/go"
+	"github.com/voxgig-sdk/free-uv-index-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/free-uv-index-sdk/go/utility/struct"
 )
 
 func TestUviEntity(t *testing.T) {

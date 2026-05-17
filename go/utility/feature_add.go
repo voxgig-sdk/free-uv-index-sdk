@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/free-uv-index-sdk/core"
+import "github.com/voxgig-sdk/free-uv-index-sdk/go/core"
 
 func featureAddUtil(ctx *core.Context, f core.Feature) {
 	client := ctx.Client

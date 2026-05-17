@@ -1,10 +1,10 @@
 package voxgigfreeuvindexsdk
 
 import (
-	"github.com/voxgig-sdk/free-uv-index-sdk/core"
-	"github.com/voxgig-sdk/free-uv-index-sdk/entity"
-	"github.com/voxgig-sdk/free-uv-index-sdk/feature"
-	_ "github.com/voxgig-sdk/free-uv-index-sdk/utility"
+	"github.com/voxgig-sdk/free-uv-index-sdk/go/core"
+	"github.com/voxgig-sdk/free-uv-index-sdk/go/entity"
+	"github.com/voxgig-sdk/free-uv-index-sdk/go/feature"
+	_ "github.com/voxgig-sdk/free-uv-index-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

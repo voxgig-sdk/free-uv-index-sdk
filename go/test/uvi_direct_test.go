@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/free-uv-index-sdk"
-	"github.com/voxgig-sdk/free-uv-index-sdk/core"
+	sdk "github.com/voxgig-sdk/free-uv-index-sdk/go"
+	"github.com/voxgig-sdk/free-uv-index-sdk/go/core"
 )
 
 func TestUviDirect(t *testing.T) {

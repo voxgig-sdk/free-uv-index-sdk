@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/free-uv-index-sdk"
+	sdk "github.com/voxgig-sdk/free-uv-index-sdk/go"
 )
 
 func TestCustomUtility(t *testing.T) {

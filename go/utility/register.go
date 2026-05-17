@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/free-uv-index-sdk/core"
+import "github.com/voxgig-sdk/free-uv-index-sdk/go/core"
 
 func init() {
 	core.UtilityRegistrar = registerAll
