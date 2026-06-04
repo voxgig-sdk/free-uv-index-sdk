@@ -68,14 +68,12 @@ function uvi_direct_setup($mockres)
     $env = Runner::env_override([
         "FREEUVINDEX_TEST_UVI_ENTID" => [],
         "FREEUVINDEX_TEST_LIVE" => "FALSE",
-        "FREEUVINDEX_APIKEY" => "NONE",
     ]);
 
     $live = $env["FREEUVINDEX_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["FREEUVINDEX_APIKEY"],
         ];
         $client = new FreeUvIndexSDK($merged_opts);
         return [

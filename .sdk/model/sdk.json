@@ -20,7 +20,17 @@
         ],
         "termsOfService": "https://currentuvindex.com/api",
         "title": "Current UV Index API",
-        "version": "1.1.0"
+        "version": "1.1.0",
+        "tagline": "Real-time UV Index plus a 5-day hourly forecast for any latitude/longitude, no API key required",
+        "homepage": "https://currentuvindex.com",
+        "docs_url": "https://currentuvindex.com/api",
+        "license_short": "CC BY 4.0 — free for personal and commercial use with attribution link to currentuvindex.com",
+        "license_md": "- Licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).\n- Free to use for personal and commercial purposes.\n- Attribution required: include a visible link back to [currentuvindex.com](https://currentuvindex.com).",
+        "about_md": "[Current UV Index](https://currentuvindex.com) is a free public API that returns the current UV index and an hourly UV forecast for any point on Earth, served from `https://currentuvindex.com/api/v1`.\n\nWhat you get from the API:\n- Current UV index for a given latitude/longitude with an ISO 8601 UTC timestamp.\n- Hourly forecast covering roughly the next 120 hours (5 days).\n- Up to 24 hours of recent history (added February 2025).\n- UV index values on the standard 0–11+ scale.\n\nOperational notes: no signup or API key is needed. The published rate limit is 500 requests per IP per day, resetting at 00:00 UTC. Latitude must be between -90 and 90; longitude between -180 and 180.",
+        "entity_desc": {
+          "uvi": "UV index readings for a given location, fetched from `GET /uvi?latitude={lat}&longitude={lon}`; the response includes the current value, an hourly forecast (~120 hours), and recent history."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -28,7 +38,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "uvi": {

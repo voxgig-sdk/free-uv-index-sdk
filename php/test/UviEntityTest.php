@@ -86,7 +86,6 @@ function uvi_basic_setup($extra)
         "FREEUVINDEX_TEST_UVI_ENTID" => $idmap,
         "FREEUVINDEX_TEST_LIVE" => "FALSE",
         "FREEUVINDEX_TEST_EXPLAIN" => "FALSE",
-        "FREEUVINDEX_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +97,6 @@ function uvi_basic_setup($extra)
     if ($env["FREEUVINDEX_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["FREEUVINDEX_APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -61,14 +61,12 @@ def _uvi_direct_setup(mockres):
     env = runner.env_override({
         "FREEUVINDEX_TEST_UVI_ENTID": {},
         "FREEUVINDEX_TEST_LIVE": "FALSE",
-        "FREEUVINDEX_APIKEY": "NONE",
     })
 
     live = env.get("FREEUVINDEX_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("FREEUVINDEX_APIKEY"),
         }
         client = FreeUvIndexSDK(merged_opts)
         return {
