@@ -10,7 +10,7 @@ The Lua SDK for the FreeUvIndex API — an entity-oriented client using Lua conv
 
 ## Install
 ```bash
-luarocks install free-uv-index-sdk
+luarocks install voxgig-sdk-free-uv-index
 ```
 
 If the module is not yet published, add the source directory to

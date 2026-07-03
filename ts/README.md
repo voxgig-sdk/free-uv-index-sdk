@@ -10,7 +10,7 @@ The TypeScript SDK for the FreeUvIndex API — a type-safe, entity-oriented clie
 
 ## Install
 ```bash
-npm install free-uv-index
+npm install @voxgig-sdk/free-uv-index
 ```
 ## Tutorial: your first API call
 

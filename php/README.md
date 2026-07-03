@@ -10,7 +10,7 @@ The PHP SDK for the FreeUvIndex API — an entity-oriented client using PHP conv
 
 ## Install
 ```bash
-composer require voxgig/free-uv-index-sdk
+composer require voxgig-sdk/free-uv-index
 ```
 
 

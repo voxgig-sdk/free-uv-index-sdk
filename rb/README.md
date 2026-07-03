@@ -10,13 +10,13 @@ The Ruby SDK for the FreeUvIndex API — an entity-oriented client using idiomat
 
 ## Install
 ```bash
-gem install free-uv-index-sdk
+gem install voxgig-sdk-free-uv-index
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "free-uv-index-sdk"
+gem "voxgig-sdk-free-uv-index"
 ```
 
 Then run:

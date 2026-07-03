@@ -10,7 +10,7 @@ The Python SDK for the FreeUvIndex API — an entity-oriented client following P
 
 ## Install
 ```bash
-pip install free-uv-index-sdk
+pip install voxgig-sdk-free-uv-index
 ```
 
 Or install from source:
