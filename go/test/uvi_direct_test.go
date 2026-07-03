@@ -93,12 +93,14 @@ func uviDirectSetup(mockres any) *uviDirectSetupResult {
 	env := envOverride(map[string]any{
 		"FREEUVINDEX_TEST_UVI_ENTID": map[string]any{},
 		"FREEUVINDEX_TEST_LIVE":    "FALSE",
+		"FREEUVINDEX_APIKEY":       "NONE",
 	})
 
 	live := env["FREEUVINDEX_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["FREEUVINDEX_APIKEY"],
 		}
 		client := sdk.NewFreeUvIndexSDK(mergedOpts)
 

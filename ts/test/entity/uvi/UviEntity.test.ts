@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'FREE_UV_INDEX_TEST_UVI_ENTID': idmap,
     'FREE_UV_INDEX_TEST_LIVE': 'FALSE',
     'FREE_UV_INDEX_TEST_EXPLAIN': 'FALSE',
+    'FREE_UV_INDEX_APIKEY': 'NONE',
   })
 
   idmap = env['FREE_UV_INDEX_TEST_UVI_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new FreeUvIndexSDK(merge([
       {
+        apikey: env.FREE_UV_INDEX_APIKEY,
       },
       extra
     ]))

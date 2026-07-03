@@ -92,6 +92,7 @@ def _uvi_basic_setup(extra):
         "FREEUVINDEX_TEST_UVI_ENTID": idmap,
         "FREEUVINDEX_TEST_LIVE": "FALSE",
         "FREEUVINDEX_TEST_EXPLAIN": "FALSE",
+        "FREEUVINDEX_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,6 +103,7 @@ def _uvi_basic_setup(extra):
     if env.get("FREEUVINDEX_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("FREEUVINDEX_APIKEY"),
             },
             extra or {},
         ])

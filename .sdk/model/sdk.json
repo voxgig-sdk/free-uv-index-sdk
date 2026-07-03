@@ -1,43 +1,13 @@
 {
-  "name": "free-uv-index",
-  "origin": "voxgig-sdk",
   "def": "free-uv-index_0.1.0.yaml",
   "main": {
+    "def": {
+      "desc": ""
+    },
     "kit": {
-      "info": {
-        "contact": {
-          "email": "info@currentuvindex.com"
-        },
-        "description": "Free Global Real-time UV Index API without API Key, providing current UV Index and 5 day Hourly UV Index Forecast for the whole world.",
-        "license": {
-          "name": "CC BY 4.0",
-          "url": "https://creativecommons.org/licenses/by/4.0"
-        },
-        "servers": [
-          {
-            "url": "https://currentuvindex.com/api/v1"
-          }
-        ],
-        "termsOfService": "https://currentuvindex.com/api",
-        "title": "Current UV Index API",
-        "version": "1.1.0",
-        "tagline": "Real-time UV Index plus a 5-day hourly forecast for any latitude/longitude, no API key required",
-        "homepage": "https://currentuvindex.com",
-        "docs_url": "https://currentuvindex.com/api",
-        "license_short": "CC BY 4.0 — free for personal and commercial use with attribution link to currentuvindex.com",
-        "license_md": "- Licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).\n- Free to use for personal and commercial purposes.\n- Attribution required: include a visible link back to [currentuvindex.com](https://currentuvindex.com).",
-        "about_md": "[Current UV Index](https://currentuvindex.com) is a free public API that returns the current UV index and an hourly UV forecast for any point on Earth, served from `https://currentuvindex.com/api/v1`.\n\nWhat you get from the API:\n- Current UV index for a given latitude/longitude with an ISO 8601 UTC timestamp.\n- Hourly forecast covering roughly the next 120 hours (5 days).\n- Up to 24 hours of recent history (added February 2025).\n- UV index values on the standard 0–11+ scale.\n\nOperational notes: no signup or API key is needed. The published rate limit is 500 requests per IP per day, resetting at 00:00 UTC. Latitude must be between -90 and 90; longitude between -180 and 180.",
-        "entity_desc": {
-          "uvi": "UV index readings for a given location, fetched from `GET /uvi?latitude={lat}&longitude={lon}`; the response includes the current value, an hourly forecast (~120 hours), and recent history."
-        },
-        "auth": false
-      },
       "config": {
         "auth": {
           "prefix": "Bearer"
-        },
-        "headers": {
-          "content-type": "application/json"
         },
         "docs_order": [
           "ts",
@@ -46,76 +16,82 @@
           "go",
           "rb",
           "lua"
-        ]
+        ],
+        "headers": {
+          "content-type": "application/json"
+        }
       },
       "entity": {
         "uvi": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "forecast",
               "req": true,
-              "type": "`$ARRAY`",
-              "active": true
+              "type": "`$ARRAY`"
             },
             {
+              "active": true,
               "name": "history",
               "req": true,
-              "type": "`$ARRAY`",
-              "active": true
+              "type": "`$ARRAY`"
             },
             {
+              "active": true,
               "name": "latitude",
               "req": true,
-              "type": "`$NUMBER`",
-              "active": true
+              "type": "`$NUMBER`"
             },
             {
+              "active": true,
               "name": "longitude",
               "req": true,
-              "type": "`$NUMBER`",
-              "active": true
+              "type": "`$NUMBER`"
             },
             {
+              "active": true,
               "name": "now",
               "req": true,
-              "type": "`$OBJECT`",
-              "active": true
+              "type": "`$OBJECT`"
             },
             {
+              "active": true,
               "name": "ok",
               "req": true,
-              "type": "`$ANY`",
-              "active": true
+              "type": "`$ANY`"
             }
           ],
           "name": "uvi",
           "op": {
             "list": {
+              "input": "data",
               "name": "list",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "query": [
                       {
+                        "active": true,
                         "example": 40.6943,
                         "kind": "query",
                         "name": "latitude",
                         "orig": "latitude",
                         "reqd": true,
-                        "type": "`$NUMBER`",
-                        "active": true
+                        "type": "`$NUMBER`"
                       },
                       {
+                        "active": true,
                         "example": -73.9249,
                         "kind": "query",
                         "name": "longitude",
                         "orig": "longitude",
                         "reqd": true,
-                        "type": "`$NUMBER`",
-                        "active": true
+                        "type": "`$NUMBER`"
                       }
                     ]
                   },
@@ -133,14 +109,11 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
           "relations": {
             "ancestors": []
           }
@@ -148,9 +121,6 @@
       },
       "feature": {
         "test": {
-          "name": "test",
-          "title": "In-memory mock transport for testing without a live server",
-          "version": "0.0.1",
           "active": true,
           "config": {
             "options": {
@@ -158,6 +128,14 @@
             }
           },
           "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
             "PostConstruct": {
               "active": true,
               "await": false
@@ -166,25 +144,11 @@
               "active": true,
               "await": false
             },
-            "SetData": {
-              "active": true,
-              "await": false
-            },
-            "GetData": {
-              "active": true,
-              "await": false
-            },
-            "SetMatch": {
-              "active": true
-            },
-            "GetMatch": {
-              "active": true,
+            "PostOperation": {
+              "active": false,
               "await": false
             },
             "PrePoint": {
-              "active": true
-            },
-            "PreSpec": {
               "active": true,
               "await": false
             },
@@ -200,20 +164,32 @@
               "active": true,
               "await": false
             },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
             "PreTarget": {
               "active": false,
               "await": false
             },
-            "PostOperation": {
-              "active": false,
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
               "await": false
             }
           },
+          "name": "test",
           "target": {
-            "ts": {
+            "go": {
               "deps": {}
             },
-            "go": {
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
               "deps": {}
             },
             "lua": {
@@ -228,23 +204,30 @@
             "rb": {
               "deps": {}
             },
-            "go-cli": {
-              "deps": {}
-            },
-            "go-mcp": {
+            "ts": {
               "deps": {}
             }
-          }
+          },
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1"
         }
       },
       "flow": {
         "BasicUviFlow": {
+          "active": true,
           "entity": "uvi",
+          "key$": "BasicUviFlow",
           "kind": "basic",
           "name": "BasicUviFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {},
               "op": "list",
+              "spec": [],
               "valid": [
                 {
                   "apply": "ItemExists",
@@ -252,29 +235,56 @@
                     "ref": "uvi_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "match": {},
-              "data": {},
-              "input": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicUviFlow",
-          "active": true,
-          "param": {}
+          ]
         }
       },
+      "info": {
+        "contact": {
+          "email": "info@currentuvindex.com"
+        },
+        "description": "Free Global Real-time UV Index API without API Key, providing current UV Index and 5 day Hourly UV Index Forecast for the whole world.",
+        "license": {
+          "name": "CC BY 4.0",
+          "url": "https://creativecommons.org/licenses/by/4.0"
+        },
+        "servers": [
+          {
+            "url": "https://currentuvindex.com/api/v1"
+          }
+        ],
+        "termsOfService": "https://currentuvindex.com/api",
+        "title": "Current UV Index API",
+        "version": "1.1.0"
+      },
+      "option": {},
       "target": {
-        "go-cli": {
-          "title": "Go CLI",
-          "ext": "go",
+        "go": {
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "free-uv-index"
           },
+          "name": "go",
+          "srcfeature": false,
+          "title": "Golang"
+        },
+        "go-cli": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "free-uv-index"
+          },
+          "name": "go-cli",
           "phase": {
             "entity": {
               "active": false
@@ -289,19 +299,19 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-cli",
-          "active": true
+          "title": "Go CLI"
         },
         "go-mcp": {
-          "title": "Go MCP server",
-          "ext": "go",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "free-uv-index"
           },
+          "name": "go-mcp",
           "phase": {
             "entity": {
               "active": false
@@ -316,138 +326,120 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-mcp",
-          "active": true
-        },
-        "ts": {
-          "title": "TypeScript",
-          "ext": "ts",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "free-uv-index"
-          },
-          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
-          "deps": {
-            "dotenv": {
-              "active": true,
-              "version": "^17.4.2",
-              "kind": "dev"
-            },
-            "typescript": {
-              "active": true,
-              "version": "^5.9.3",
-              "kind": "dev"
-            },
-            "@types/node": {
-              "active": true,
-              "version": "^25.6.0",
-              "kind": "dev"
-            }
-          },
-          "name": "ts",
-          "active": true
-        },
-        "go": {
-          "title": "Golang",
-          "ext": "go",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "free-uv-index"
-          },
-          "srcfeature": false,
-          "deps": {},
-          "name": "go",
-          "active": true
+          "title": "Go MCP server"
         },
         "lua": {
-          "title": "Lua",
-          "ext": "lua",
+          "active": true,
           "comment": {
             "line": "--"
           },
-          "module": {
-            "name": "free-uv-index"
-          },
-          "srcfeature": false,
           "deps": {
             "dkjson": {
               "active": true,
-              "version": "2.5",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.5"
             }
           },
+          "ext": "lua",
+          "module": {
+            "name": "free-uv-index"
+          },
           "name": "lua",
-          "active": true
+          "srcfeature": false,
+          "title": "Lua"
         },
         "php": {
-          "title": "PHP",
-          "ext": "php",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "php",
           "module": {
             "name": "free-uv-index"
           },
-          "srcfeature": false,
-          "deps": {},
           "name": "php",
-          "active": true
+          "srcfeature": false,
+          "title": "PHP"
         },
         "py": {
-          "title": "Python",
-          "ext": "py",
+          "active": true,
           "comment": {
             "line": "#"
           },
-          "module": {
-            "name": "free-uv-index"
-          },
-          "srcfeature": false,
           "deps": {
             "requests": {
               "active": true,
-              "version": "2.33",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.33"
             }
           },
-          "name": "py",
-          "active": true
-        },
-        "rb": {
-          "title": "Ruby",
-          "ext": "rb",
-          "comment": {
-            "line": "#"
-          },
+          "ext": "py",
           "module": {
             "name": "free-uv-index"
           },
+          "name": "py",
           "srcfeature": false,
+          "title": "Python"
+        },
+        "rb": {
+          "active": true,
+          "comment": {
+            "line": "#"
+          },
           "deps": {
-            "voxgig-struct": {
-              "active": true,
-              "version": "0.0.10",
-              "kind": "prod"
-            },
             "json": {
               "active": true,
-              "version": "0",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "0"
+            },
+            "voxgig-struct": {
+              "active": true,
+              "kind": "prod",
+              "version": "0.0.10"
             }
           },
+          "ext": "rb",
+          "module": {
+            "name": "free-uv-index"
+          },
           "name": "rb",
-          "active": true
+          "srcfeature": false,
+          "title": "Ruby"
+        },
+        "ts": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "dotenv": {
+              "active": true,
+              "kind": "dev",
+              "version": "^17.4.2"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "module": {
+            "name": "free-uv-index"
+          },
+          "name": "ts",
+          "title": "TypeScript"
         }
-      },
-      "option": {}
-    },
-    "def": {
-      "desc": ""
+      }
     }
-  }
+  },
+  "name": "free-uv-index",
+  "origin": "voxgig-sdk"
 }

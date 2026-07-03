@@ -83,12 +83,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'FREEUVINDEX_TEST_UVI_ENTID': {},
     'FREEUVINDEX_TEST_LIVE': 'FALSE',
+    'FREEUVINDEX_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.FREEUVINDEX_TEST_LIVE
 
   if (live) {
     const client = new FreeUvIndexSDK({
+      apikey: env.FREEUVINDEX_APIKEY,
     })
 
     let idmap: any = env['FREEUVINDEX_TEST_UVI_ENTID']

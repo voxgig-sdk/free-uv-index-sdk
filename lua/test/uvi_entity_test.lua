@@ -92,6 +92,7 @@ function uvi_basic_setup(extra)
     ["FREEUVINDEX_TEST_UVI_ENTID"] = idmap,
     ["FREEUVINDEX_TEST_LIVE"] = "FALSE",
     ["FREEUVINDEX_TEST_EXPLAIN"] = "FALSE",
+    ["FREEUVINDEX_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -103,6 +104,7 @@ function uvi_basic_setup(extra)
   if env["FREEUVINDEX_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["FREEUVINDEX_APIKEY"],
       },
       extra or {},
     })

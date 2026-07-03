@@ -15,6 +15,9 @@ def make_config():
         },
         "options": {
             "base": "https://currentuvindex.com/api/v1",
+            "auth": {
+                "prefix": "Bearer",
+            },
             "headers": {
         "content-type": "application/json",
       },
@@ -26,73 +29,75 @@ def make_config():
       "uvi": {
         "fields": [
           {
+            "active": True,
             "name": "forecast",
             "req": True,
             "type": "`$ARRAY`",
-            "active": True,
             "index$": 0,
           },
           {
+            "active": True,
             "name": "history",
             "req": True,
             "type": "`$ARRAY`",
-            "active": True,
             "index$": 1,
           },
           {
+            "active": True,
             "name": "latitude",
             "req": True,
             "type": "`$NUMBER`",
-            "active": True,
             "index$": 2,
           },
           {
+            "active": True,
             "name": "longitude",
             "req": True,
             "type": "`$NUMBER`",
-            "active": True,
             "index$": 3,
           },
           {
+            "active": True,
             "name": "now",
             "req": True,
             "type": "`$OBJECT`",
-            "active": True,
             "index$": 4,
           },
           {
+            "active": True,
             "name": "ok",
             "req": True,
             "type": "`$ANY`",
-            "active": True,
             "index$": 5,
           },
         ],
         "name": "uvi",
         "op": {
           "list": {
+            "input": "data",
             "name": "list",
             "points": [
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "example": 40.6943,
                       "kind": "query",
                       "name": "latitude",
                       "orig": "latitude",
                       "reqd": True,
                       "type": "`$NUMBER`",
-                      "active": True,
                     },
                     {
+                      "active": True,
                       "example": -73.9249,
                       "kind": "query",
                       "name": "longitude",
                       "orig": "longitude",
                       "reqd": True,
                       "type": "`$NUMBER`",
-                      "active": True,
                     },
                   ],
                 },
@@ -111,11 +116,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "list",
           },
         },

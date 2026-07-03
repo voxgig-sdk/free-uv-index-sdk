@@ -1,20 +1,8 @@
 # FreeUvIndex SDK
 
-Real-time UV Index plus a 5-day hourly forecast for any latitude/longitude, no API key required
+Current UV Index API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Current UV Index API
-
-[Current UV Index](https://currentuvindex.com) is a free public API that returns the current UV index and an hourly UV forecast for any point on Earth, served from `https://currentuvindex.com/api/v1`.
-
-What you get from the API:
-- Current UV index for a given latitude/longitude with an ISO 8601 UTC timestamp.
-- Hourly forecast covering roughly the next 120 hours (5 days).
-- Up to 24 hours of recent history (added February 2025).
-- UV index values on the standard 0–11+ scale.
-
-Operational notes: no signup or API key is needed. The published rate limit is 500 requests per IP per day, resetting at 00:00 UTC. Latitude must be between -90 and 90; longitude between -180 and 180.
 
 ## Try it
 
@@ -48,29 +36,31 @@ gem install free-uv-index-sdk
 luarocks install free-uv-index-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { FreeUvIndexSDK } from 'free-uv-index'
 
-const client = new FreeUvIndexSDK({})
+const client = new FreeUvIndexSDK({
+  apikey: process.env.FREE-UV-INDEX_APIKEY,
+})
 
 // List all uvis
 const uvis = await client.Uvi().list()
+console.log(uvis.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Uvi** | UV index readings for a given location, fetched from `GET /uvi?latitude={lat}&longitude={lon}`; the response includes the current value, an hourly forecast (~120 hours), and recent history. | `/uvi` |
+| **Uvi** |  | `/uvi` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -110,12 +100,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from freeuvindex_sdk import FreeUvIndexSDK
 
-client = FreeUvIndexSDK({})
+client = FreeUvIndexSDK({
+    "apikey": os.environ.get("FREE-UV-INDEX_APIKEY"),
+})
 
 # List all uvis
-uvis, err = client.Uvi(None).list(None, None)
+uvis, err = client.Uvi().list()
+print(uvis)
 ```
 
 ### PHP
@@ -124,10 +118,13 @@ uvis, err = client.Uvi(None).list(None, None)
 <?php
 require_once 'freeuvindex_sdk.php';
 
-$client = new FreeUvIndexSDK([]);
+$client = new FreeUvIndexSDK([
+    "apikey" => getenv("FREE-UV-INDEX_APIKEY"),
+]);
 
 // List all uvis
-[$uvis, $err] = $client->Uvi(null)->list(null, null);
+[$uvis, $err] = $client->Uvi()->list();
+print_r($uvis);
 ```
 
 ### Golang
@@ -135,10 +132,13 @@ $client = new FreeUvIndexSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/free-uv-index-sdk/go"
 
-client := sdk.NewFreeUvIndexSDK(map[string]any{})
+client := sdk.NewFreeUvIndexSDK(map[string]any{
+    "apikey": os.Getenv("FREE-UV-INDEX_APIKEY"),
+})
 
 // List all uvis
 uvis, err := client.Uvi(nil).List(nil, nil)
+fmt.Println(uvis)
 ```
 
 ### Ruby
@@ -146,10 +146,13 @@ uvis, err := client.Uvi(nil).List(nil, nil)
 ```ruby
 require_relative "FreeUvIndex_sdk"
 
-client = FreeUvIndexSDK.new({})
+client = FreeUvIndexSDK.new({
+  "apikey" => ENV["FREE-UV-INDEX_APIKEY"],
+})
 
 # List all uvis
-uvis, err = client.Uvi(nil).list(nil, nil)
+uvis, err = client.Uvi().list
+puts uvis
 ```
 
 ### Lua
@@ -157,10 +160,13 @@ uvis, err = client.Uvi(nil).list(nil, nil)
 ```lua
 local sdk = require("free-uv-index_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("FREE-UV-INDEX_APIKEY"),
+})
 
 -- List all uvis
-local uvis, err = client:Uvi(nil):list(nil, nil)
+local uvis, err = client:Uvi():list()
+print(uvis)
 ```
 
 ## Unit testing in offline mode
@@ -179,25 +185,21 @@ const result = await client.Uvi().load({ id: 'test01' })
 ### Python
 
 ```python
-client = FreeUvIndexSDK.test(None, None)
-result, err = client.Uvi(None).load(
-    {"id": "test01"}, None
-)
+client = FreeUvIndexSDK.test()
+result, err = client.Uvi().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = FreeUvIndexSDK::test(null, null);
-[$result, $err] = $client->Uvi(null)->load(
-    ["id" => "test01"], null
-);
+$client = FreeUvIndexSDK::test();
+[$result, $err] = $client->Uvi()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Uvi(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -206,19 +208,15 @@ result, err := client.Uvi(nil).Load(
 ### Ruby
 
 ```ruby
-client = FreeUvIndexSDK.test(nil, nil)
-result, err = client.Uvi(nil).load(
-  { "id" => "test01" }, nil
-)
+client = FreeUvIndexSDK.test
+result, err = client.Uvi().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Uvi(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Uvi():load({ id = "test01" })
 ```
 
 ## How it works
@@ -322,15 +320,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Current UV Index API
-
-- Upstream: [https://currentuvindex.com](https://currentuvindex.com)
-- API docs: [https://currentuvindex.com/api](https://currentuvindex.com/api)
-
-- Licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
-- Free to use for personal and commercial purposes.
-- Attribution required: include a visible link back to [currentuvindex.com](https://currentuvindex.com).
 
 ---
 

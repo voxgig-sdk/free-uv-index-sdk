@@ -38,6 +38,10 @@ class Config {
   options = {
     base: 'https://currentuvindex.com/api/v1',
 
+    auth: {
+      prefix: 'Bearer',
+    },
+
     headers: {
       "content-type": "application/json"
     },
@@ -55,73 +59,75 @@ class Config {
     "uvi": {
       "fields": [
         {
+          "active": true,
           "name": "forecast",
           "req": true,
           "type": "`$ARRAY`",
-          "active": true,
           "index$": 0
         },
         {
+          "active": true,
           "name": "history",
           "req": true,
           "type": "`$ARRAY`",
-          "active": true,
           "index$": 1
         },
         {
+          "active": true,
           "name": "latitude",
           "req": true,
           "type": "`$NUMBER`",
-          "active": true,
           "index$": 2
         },
         {
+          "active": true,
           "name": "longitude",
           "req": true,
           "type": "`$NUMBER`",
-          "active": true,
           "index$": 3
         },
         {
+          "active": true,
           "name": "now",
           "req": true,
           "type": "`$OBJECT`",
-          "active": true,
           "index$": 4
         },
         {
+          "active": true,
           "name": "ok",
           "req": true,
           "type": "`$ANY`",
-          "active": true,
           "index$": 5
         }
       ],
       "name": "uvi",
       "op": {
         "list": {
+          "input": "data",
           "name": "list",
           "points": [
             {
+              "active": true,
               "args": {
                 "query": [
                   {
+                    "active": true,
                     "example": 40.6943,
                     "kind": "query",
                     "name": "latitude",
                     "orig": "latitude",
                     "reqd": true,
-                    "type": "`$NUMBER`",
-                    "active": true
+                    "type": "`$NUMBER`"
                   },
                   {
+                    "active": true,
                     "example": -73.9249,
                     "kind": "query",
                     "name": "longitude",
                     "orig": "longitude",
                     "reqd": true,
-                    "type": "`$NUMBER`",
-                    "active": true
+                    "type": "`$NUMBER`"
                   }
                 ]
               },
@@ -140,11 +146,9 @@ class Config {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "list"
         }
       },
