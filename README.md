@@ -26,9 +26,11 @@ import { FreeUvIndexSDK } from '@voxgig-sdk/free-uv-index'
 
 const client = new FreeUvIndexSDK()
 
-// List all uvis
-const uvis = await client.uvi.list()
-console.log(uvis.data)
+// List all uvis (returns Uvi[])
+const uvis = await client.Uvi().list()
+for (const uvi of uvis) {
+  console.log(uvi)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -83,9 +85,10 @@ from freeuvindex_sdk import FreeUvIndexSDK
 
 client = FreeUvIndexSDK()
 
-# List all uvis
-uvis = client.uvi.list()
-print(uvis)
+# List all uvis (returns a list, raises on error)
+uvis = client.Uvi().list({})
+for uvi in uvis:
+    print(uvi)
 ```
 
 ### PHP
@@ -96,8 +99,8 @@ require_once 'freeuvindex_sdk.php';
 
 $client = new FreeUvIndexSDK();
 
-// List all uvis (throws on error)
-$uvis = $client->uvi()->list();
+// List all uvis (returns an array; throws on error)
+$uvis = $client->Uvi()->list();
 print_r($uvis);
 ```
 
@@ -120,8 +123,8 @@ require_relative "FreeUvIndex_sdk"
 
 client = FreeUvIndexSDK.new
 
-# List all uvis
-uvis = client.uvi.list
+# List all uvis (returns an Array; raises on error)
+uvis = client.Uvi.list
 puts uvis
 ```
 
@@ -133,7 +136,7 @@ local sdk = require("free-uv-index_sdk")
 local client = sdk.new()
 
 -- List all uvis
-local uvis, err = client:uvi():list()
+local uvis, err = client:Uvi():list()
 print(uvis)
 ```
 
@@ -146,22 +149,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = FreeUvIndexSDK.test()
-const result = await client.uvi.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const uvi = await client.Uvi().load({ id: 'test01' })
+// uvi is a bare Uvi populated with mock data
+console.log(uvi)
 ```
 
 ### Python
 
 ```python
 client = FreeUvIndexSDK.test()
-result = client.uvi.load({"id": "test01"})
+uvi = client.Uvi().load({"id": "test01"})
+print(uvi)
 ```
 
 ### PHP
 
 ```php
-$client = FreeUvIndexSDK::test();
-$result = $client->uvi()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = FreeUvIndexSDK::test([
+    "entity" => ["uvi" => ["test01" => ["id" => "test01"]]],
+]);
+$uvi = $client->Uvi()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -176,15 +184,18 @@ result, err := client.Uvi(nil).Load(
 ### Ruby
 
 ```ruby
-client = FreeUvIndexSDK.test
-result = client.uvi.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = FreeUvIndexSDK.test({
+  "entity" => { "uvi" => { "test01" => { "id" => "test01" } } },
+})
+uvi = client.Uvi.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:uvi():load({ id = "test01" })
+local result, err = client:Uvi():load({ id = "test01" })
 ```
 
 ## How it works
@@ -232,6 +243,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

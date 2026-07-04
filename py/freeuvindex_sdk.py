@@ -220,25 +220,15 @@ class FreeUvIndexSDK:
         }
 
 
-    @property
-    def uvi(self):
-        """Idiomatic facade: client.uvi.list() / client.uvi.load({"id": ...})."""
-        from entity.uvi_entity import UviEntity
-        cached = getattr(self, "_uvi", None)
-        if cached is None:
-            cached = UviEntity(self, None)
-            self._uvi = cached
-        return cached
-
-    def Uvi(self, data=None):
-        # Deprecated: use client.uvi instead.
+    def Uvi(self, data=None) -> "UviEntity":
+        """Entity factory: client.Uvi().list({}) / client.Uvi().load({"id": ...})."""
         from entity.uvi_entity import UviEntity
         return UviEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "FreeUvIndexSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class FreeUvIndexSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.uvi_entity import UviEntity

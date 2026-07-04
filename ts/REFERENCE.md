@@ -109,7 +109,7 @@ Alias for `FreeUvIndexSDK.test()`.
 ## UviEntity
 
 ```ts
-const uvi = client.uvi
+const uvi = client.Uvi()
 ```
 
 ### Fields
@@ -130,7 +130,7 @@ const uvi = client.uvi
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.uvi.list()
+const results = await client.Uvi().list()
 ```
 
 ### Common Methods

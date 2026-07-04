@@ -204,14 +204,7 @@ class FreeUvIndexSDK {
 
 
 
-  _uvi?: UviEntity
-
-  // Idiomatic facade: `client.uvi.list()` / `client.uvi.load({ id })`.
-  get uvi(): UviEntity {
-    return (this._uvi ??= new UviEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.uvi` instead. */
+  // Entity access: `client.Uvi().list()` / `client.Uvi().load({ id })`.
   Uvi(data?: any) {
     const self = this
     return new UviEntity(self,data)

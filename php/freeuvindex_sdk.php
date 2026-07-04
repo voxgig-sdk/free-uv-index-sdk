@@ -233,10 +233,10 @@ class FreeUvIndexSDK
 
     private $_uvi = null;
 
-    // Idiomatic facade: $client->uvi()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Uvi() (PHP method
-    // names are case-insensitive).
-    public function uvi($data = null)
+    // Canonical facade: $client->Uvi()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->uvi()
+    // resolves here too.
+    public function Uvi($data = null)
     {
         require_once __DIR__ . '/entity/uvi_entity.php';
         if ($data === null) {

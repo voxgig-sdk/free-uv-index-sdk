@@ -29,18 +29,16 @@ require_once 'freeuvindex_sdk.php';
 $client = new FreeUvIndexSDK();
 ```
 
-### 2. List uvis
+### 2. List uvi records
 
 ```php
 try {
-    $result = $client->uvi()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Uvi records — iterate directly.
+    $uvis = $client->Uvi()->list();
+    foreach ($uvis as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = FreeUvIndexSDK::test();
+$client = FreeUvIndexSDK::test([
+    "entity" => ["uvi" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->uvi()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$uvi = $client->Uvi()->load(["id" => "test01"]);
+print_r($uvi);
 ```
 
 ### Use a custom fetch function
@@ -171,7 +173,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Uvi` | `($data): UviEntity` | Create a Uvi entity instance. |
+| `Uvi` | `($data): UviEntity` | Create an Uvi entity instance. |
 
 ### Entity interface
 
@@ -233,7 +235,7 @@ API path: `/uvi`
 
 ### Uvi
 
-Create an instance: `const uvi = client.uvi`
+Create an instance: `$uvi = $client->Uvi();`
 
 #### Operations
 
@@ -254,8 +256,9 @@ Create an instance: `const uvi = client.uvi`
 
 #### Example: List
 
-```ts
-const uvis = await client.uvi.list()
+```php
+// list() returns an array of Uvi records (throws on error).
+$uvis = $client->Uvi()->list();
 ```
 
 
@@ -330,7 +333,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$uvi = $client->uvi();
+$uvi = $client->Uvi();
 $uvi->load(["id" => "example_id"]);
 
 // $uvi->dataGet() now returns the loaded uvi data

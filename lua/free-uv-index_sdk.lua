@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:uvi():list() / client:uvi():load({ id = ... })
-function FreeUvIndexSDK:uvi(data)
+-- Idiomatic facade: client:Uvi():list() / client:Uvi():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function FreeUvIndexSDK:Uvi(data)
   local EntityMod = require("entity.uvi_entity")
   if data == nil then
     if self._uvi == nil then
@@ -253,12 +254,6 @@ function FreeUvIndexSDK:uvi(data)
     end
     return self._uvi
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:uvi() instead.
-function FreeUvIndexSDK:Uvi(data)
-  local EntityMod = require("entity.uvi_entity")
   return EntityMod.new(self, data)
 end
 

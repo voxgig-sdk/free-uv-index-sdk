@@ -80,7 +80,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## UviEntity
 
 ```python
-uvi = client.uvi
+uvi = client.Uvi()
 ```
 
 ### Fields
@@ -101,7 +101,9 @@ uvi = client.uvi
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.uvi.list({})
+results = client.Uvi().list({})
+for uvi in results:
+    print(uvi)
 ```
 
 ### Common Methods

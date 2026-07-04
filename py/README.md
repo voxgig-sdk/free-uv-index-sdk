@@ -31,14 +31,16 @@ from freeuvindex_sdk import FreeUvIndexSDK
 client = FreeUvIndexSDK()
 ```
 
-### 2. List uvis
+### 2. List uvi records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.uvi.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    uvis = client.Uvi().list({})
+    for uvi in uvis:
+        print(uvi)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = FreeUvIndexSDK.test()
 
-result = client.uvi.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+uvi = client.Uvi().load({"id": "test01"})
+# uvi contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -163,7 +166,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `Uvi` | `(data) -> UviEntity` | Create a Uvi entity instance. |
+| `Uvi` | `(data) -> UviEntity` | Create an Uvi entity instance. |
 
 ### Entity interface
 
@@ -225,7 +228,7 @@ API path: `/uvi`
 
 ### Uvi
 
-Create an instance: `const uvi = client.uvi`
+Create an instance: `uvi = client.Uvi()`
 
 #### Operations
 
@@ -246,8 +249,8 @@ Create an instance: `const uvi = client.uvi`
 
 #### Example: List
 
-```ts
-const uvis = await client.uvi.list()
+```python
+uvis = client.Uvi().list({})
 ```
 
 
@@ -321,7 +324,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-uvi = client.uvi
+uvi = client.Uvi()
 uvi.load({"id": "example_id"})
 
 # uvi.data_get() now returns the loaded uvi data

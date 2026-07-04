@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## UviEntity
 
 ```php
-$uvi = $client->uvi();
+$uvi = $client->Uvi();
 ```
 
 ### Fields
@@ -106,7 +106,7 @@ $uvi = $client->uvi();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->uvi()->list([]);
+$results = $client->Uvi()->list([]);
 ```
 
 ### Common Methods

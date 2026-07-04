@@ -86,7 +86,7 @@ same parameters as `direct()`. Raises on error.
 ## UviEntity
 
 ```ruby
-uvi = client.uvi
+uvi = client.Uvi
 ```
 
 ### Fields
@@ -107,7 +107,7 @@ uvi = client.uvi
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.uvi.list(nil)
+results = client.Uvi.list(nil)
 ```
 
 ### Common Methods

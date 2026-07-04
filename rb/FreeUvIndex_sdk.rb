@@ -208,13 +208,7 @@ class FreeUvIndexSDK
   end
 
 
-  # Idiomatic facade: client.uvi.list / client.uvi.load({ "id" => ... })
-  def uvi
-    require_relative 'entity/uvi_entity'
-    @uvi ||= UviEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.uvi instead.
+  # Canonical facade: client.Uvi.list / client.Uvi.load({ "id" => ... })
   def Uvi(data = nil)
     require_relative 'entity/uvi_entity'
     UviEntity.new(self, data)

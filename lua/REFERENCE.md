@@ -83,7 +83,7 @@ same parameters as `direct()`.
 ## UviEntity
 
 ```lua
-local uvi = client:uvi(nil)
+local uvi = client:Uvi(nil)
 ```
 
 ### Fields
@@ -104,7 +104,7 @@ local uvi = client:uvi(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:uvi():list()
+local results, err = client:Uvi():list()
 ```
 
 ### Common Methods
