@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:uvi():list() / client:uvi():load({ id = ... })
+function FreeUvIndexSDK:uvi(data)
+  local EntityMod = require("entity.uvi_entity")
+  if data == nil then
+    if self._uvi == nil then
+      self._uvi = EntityMod.new(self, nil)
+    end
+    return self._uvi
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:uvi() instead.
 function FreeUvIndexSDK:Uvi(data)
   local EntityMod = require("entity.uvi_entity")
   return EntityMod.new(self, data)

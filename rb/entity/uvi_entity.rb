@@ -45,6 +45,7 @@ class UviEntity
     end
   end
 
+  # @return [Uvi, Hash] the current Uvi data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class UviEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Uvi fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class UviEntity
   
 
   
+  # List Uvi items matching the given filter.
+  #
+  # @param reqmatch [UviListMatch, Hash, nil] match filter (any subset of Uvi fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Uvi>, Array] the matching Uvi items; raises FreeUvIndexError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

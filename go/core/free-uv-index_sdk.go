@@ -245,6 +245,9 @@ func (sdk *FreeUvIndexSDK) Direct(fetchargs map[string]any) (map[string]any, err
 }
 
 
+// Uvi returns a Uvi entity bound to this client.
+// Idiomatic usage: client.Uvi(nil).List(nil, nil) or
+// client.Uvi(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *FreeUvIndexSDK) Uvi(data map[string]any) FreeUvIndexEntity {
 	return NewUviEntityFunc(sdk, data)
 }

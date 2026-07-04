@@ -2,6 +2,8 @@
 
 import { UviEntity } from './entity/UviEntity'
 
+export type * from './FreeUvIndexTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class FreeUvIndexSDK {
 
 
 
+  _uvi?: UviEntity
+
+  // Idiomatic facade: `client.uvi.list()` / `client.uvi.load({ id })`.
+  get uvi(): UviEntity {
+    return (this._uvi ??= new UviEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.uvi` instead. */
   Uvi(data?: any) {
     const self = this
     return new UviEntity(self,data)

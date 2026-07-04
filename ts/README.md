@@ -9,9 +9,12 @@ The TypeScript SDK for the FreeUvIndex API — a type-safe, entity-oriented clie
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/free-uv-index
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/free-uv-index-sdk/releases](https://github.com/voxgig-sdk/free-uv-index-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { FreeUvIndexSDK } from 'free-uv-index'
+import { FreeUvIndexSDK } from '@voxgig-sdk/free-uv-index'
 
-const client = new FreeUvIndexSDK({
-  apikey: process.env.FREE-UV-INDEX_APIKEY,
-})
+const client = new FreeUvIndexSDK()
 ```
 
 ### 2. List uvis
 
 ```ts
-const result = await client.Uvi().list()
+const result = await client.uvi.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = FreeUvIndexSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.uvi.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -89,7 +90,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new FreeUvIndexSDK({ apikey: '...' })
+const client = new FreeUvIndexSDK()
 const testClient = client.tester()
 ```
 
@@ -98,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.uvi
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -125,7 +126,6 @@ const logger = {
 }
 
 const client = new FreeUvIndexSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -135,8 +135,7 @@ const client = new FreeUvIndexSDK({
 Create a `.env.local` file at the project root:
 
 ```
-FREE-UV-INDEX_TEST_LIVE=TRUE
-FREE-UV-INDEX_APIKEY=<your-key>
+FREE_UV_INDEX_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -154,7 +153,6 @@ cd ts && npm test
 
 ```ts
 new FreeUvIndexSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -165,7 +163,6 @@ new FreeUvIndexSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -273,7 +270,7 @@ API path: `/uvi`
 
 ### Uvi
 
-Create an instance: `const uvi = client.Uvi()`
+Create an instance: `const uvi = client.uvi`
 
 #### Operations
 
@@ -295,7 +292,7 @@ Create an instance: `const uvi = client.Uvi()`
 #### Example: List
 
 ```ts
-const uvis = await client.Uvi().list()
+const uvis = await client.uvi.list()
 ```
 
 
@@ -356,7 +353,7 @@ free-uv-index/
 Import the SDK from the package root:
 
 ```ts
-import { FreeUvIndexSDK } from 'free-uv-index'
+import { FreeUvIndexSDK } from '@voxgig-sdk/free-uv-index'
 ```
 
 ### Entity state
@@ -366,11 +363,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const uvi = client.uvi
+await uvi.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// uvi.data() now returns the loaded uvi data
+// uvi.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

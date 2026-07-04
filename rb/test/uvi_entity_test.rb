@@ -43,8 +43,7 @@ class UviEntityTest < Minitest::Test
     uvi_ref01_ent = client.Uvi(nil)
     uvi_ref01_match = {}
 
-    uvi_ref01_list_result, err = uvi_ref01_ent.list(uvi_ref01_match, nil)
-    assert_nil err
+    uvi_ref01_list_result = uvi_ref01_ent.list(uvi_ref01_match, nil)
     assert uvi_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def uvi_basic_setup(extra)
     "FREEUVINDEX_TEST_UVI_ENTID" => idmap,
     "FREEUVINDEX_TEST_LIVE" => "FALSE",
     "FREEUVINDEX_TEST_EXPLAIN" => "FALSE",
-    "FREEUVINDEX_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def uvi_basic_setup(extra)
   if env["FREEUVINDEX_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["FREEUVINDEX_APIKEY"],
       },
       extra || {},
     ])
