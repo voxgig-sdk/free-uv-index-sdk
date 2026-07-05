@@ -8,7 +8,7 @@ Complete API reference for the FreeUvIndex Python SDK.
 ### Constructor
 
 ```python
-from free-uv-index_sdk import FreeUvIndexSDK
+from freeuvindex_sdk import FreeUvIndexSDK
 
 client = FreeUvIndexSDK(options)
 ```
@@ -87,21 +87,21 @@ uvi = client.Uvi()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `forecast` | ``$ARRAY`` | Yes |  |
-| `history` | ``$ARRAY`` | Yes |  |
-| `latitude` | ``$NUMBER`` | Yes |  |
-| `longitude` | ``$NUMBER`` | Yes |  |
-| `now` | ``$OBJECT`` | Yes |  |
-| `ok` | ``$ANY`` | Yes |  |
+| `forecast` | `list` | Yes |  |
+| `history` | `list` | Yes |  |
+| `latitude` | `float` | Yes |  |
+| `longitude` | `float` | Yes |  |
+| `now` | `dict` | Yes |  |
+| `ok` | `Any` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Uvi().list({})
+results = client.Uvi().list()
 for uvi in results:
     print(uvi)
 ```

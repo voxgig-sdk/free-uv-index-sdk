@@ -221,7 +221,7 @@ class FreeUvIndexSDK:
 
 
     def Uvi(self, data=None) -> "UviEntity":
-        """Entity factory: client.Uvi().list({}) / client.Uvi().load({"id": ...})."""
+        """Entity factory: client.Uvi().list() / client.Uvi().load({"id": ...})."""
         from entity.uvi_entity import UviEntity
         return UviEntity(self, data)
 

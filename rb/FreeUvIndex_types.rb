@@ -37,7 +37,7 @@ Uvi = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Uvi#list (any subset of Uvi fields).
+# Request payload for Uvi#list.
 #
 # @!attribute [rw] forecast
 #   @return [Array, nil]

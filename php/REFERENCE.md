@@ -8,7 +8,7 @@ Complete API reference for the FreeUvIndex PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/free-uv-index_sdk.php';
+require_once __DIR__ . '/freeuvindex_sdk.php';
 
 $client = new FreeUvIndexSDK($options);
 ```
@@ -45,11 +45,11 @@ $client = FreeUvIndexSDK::test();
 
 Create a new `UviEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): FreeUvIndexUtility`
 
 Return a copy of the SDK utility object.
 
@@ -92,38 +92,38 @@ $uvi = $client->Uvi();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `forecast` | ``$ARRAY`` | Yes |  |
-| `history` | ``$ARRAY`` | Yes |  |
-| `latitude` | ``$NUMBER`` | Yes |  |
-| `longitude` | ``$NUMBER`` | Yes |  |
-| `now` | ``$OBJECT`` | Yes |  |
-| `ok` | ``$ANY`` | Yes |  |
+| `forecast` | `array` | Yes |  |
+| `history` | `array` | Yes |  |
+| `latitude` | `float` | Yes |  |
+| `longitude` | `float` | Yes |  |
+| `now` | `array` | Yes |  |
+| `ok` | `mixed` | Yes |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Uvi()->list([]);
+$results = $client->Uvi()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -132,7 +132,7 @@ Set the entity match criteria.
 Create a new `UviEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

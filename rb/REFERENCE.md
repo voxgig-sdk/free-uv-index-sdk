@@ -8,7 +8,7 @@ Complete API reference for the FreeUvIndex Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'free-uv-index_sdk'
+require_relative 'FreeUvIndex_sdk'
 
 client = FreeUvIndexSDK.new(options)
 ```
@@ -93,21 +93,21 @@ uvi = client.Uvi
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `forecast` | ``$ARRAY`` | Yes |  |
-| `history` | ``$ARRAY`` | Yes |  |
-| `latitude` | ``$NUMBER`` | Yes |  |
-| `longitude` | ``$NUMBER`` | Yes |  |
-| `now` | ``$OBJECT`` | Yes |  |
-| `ok` | ``$ANY`` | Yes |  |
+| `forecast` | `Array` | Yes |  |
+| `history` | `Array` | Yes |  |
+| `latitude` | `Float` | Yes |  |
+| `longitude` | `Float` | Yes |  |
+| `now` | `Hash` | Yes |  |
+| `ok` | `Object` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Uvi.list(nil)
+results = client.Uvi.list
 ```
 
 ### Common Methods

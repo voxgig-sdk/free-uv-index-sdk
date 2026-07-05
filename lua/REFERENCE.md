@@ -90,12 +90,12 @@ local uvi = client:Uvi(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `forecast` | ``$ARRAY`` | Yes |  |
-| `history` | ``$ARRAY`` | Yes |  |
-| `latitude` | ``$NUMBER`` | Yes |  |
-| `longitude` | ``$NUMBER`` | Yes |  |
-| `now` | ``$OBJECT`` | Yes |  |
-| `ok` | ``$ANY`` | Yes |  |
+| `forecast` | `table` | Yes |  |
+| `history` | `table` | Yes |  |
+| `latitude` | `number` | Yes |  |
+| `longitude` | `number` | Yes |  |
+| `now` | `table` | Yes |  |
+| `ok` | `any` | Yes |  |
 
 ### Operations
 

@@ -15,6 +15,12 @@
 ---@field ok any
 
 ---@class UviListMatch
+---@field forecast? table
+---@field history? table
+---@field latitude? number
+---@field longitude? number
+---@field now? table
+---@field ok? any
 
 local M = {}
 

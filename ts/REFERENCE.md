@@ -116,12 +116,12 @@ const uvi = client.Uvi()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `forecast` | ``$ARRAY`` | Yes |  |
-| `history` | ``$ARRAY`` | Yes |  |
-| `latitude` | ``$NUMBER`` | Yes |  |
-| `longitude` | ``$NUMBER`` | Yes |  |
-| `now` | ``$OBJECT`` | Yes |  |
-| `ok` | ``$ANY`` | Yes |  |
+| `forecast` | `any[]` | Yes |  |
+| `history` | `any[]` | Yes |  |
+| `latitude` | `number` | Yes |  |
+| `longitude` | `number` | Yes |  |
+| `now` | `Record<string, any>` | Yes |  |
+| `ok` | `any` | Yes |  |
 
 ### Operations
 

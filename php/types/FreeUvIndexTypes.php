@@ -23,7 +23,7 @@ class Uvi
     public mixed $ok;
 }
 
-/** Match filter for Uvi#list (any subset of Uvi fields). */
+/** Request payload for Uvi#list. */
 class UviListMatch
 {
     public ?array $forecast = null;

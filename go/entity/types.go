@@ -18,8 +18,7 @@ type Uvi struct {
 	Ok any `json:"ok"`
 }
 
-// UviListMatch mirrors the uvi fields as an all-optional match
-// filter (Go analog of Partial<Uvi>).
+// UviListMatch is the typed request payload for Uvi.ListTyped.
 type UviListMatch struct {
 	Forecast *[]any `json:"forecast,omitempty"`
 	History *[]any `json:"history,omitempty"`
