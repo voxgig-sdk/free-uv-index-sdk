@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -250,14 +247,17 @@
           "name": "CC BY 4.0",
           "url": "https://creativecommons.org/licenses/by/4.0"
         },
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "url": "https://currentuvindex.com/api/v1"
           }
         ],
+        "summary": "Free Global Real-time UV Index API without API Key, providing current UV Index and 5 day Hourly UV Index Forecast for the whole world.",
         "termsOfService": "https://currentuvindex.com/api",
         "title": "Current UV Index API",
-        "version": "1.1.0"
+        "version": "1.1.0",
+        "website": "https://currentuvindex.com"
       },
       "option": {},
       "target": {
@@ -310,6 +310,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -360,6 +363,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

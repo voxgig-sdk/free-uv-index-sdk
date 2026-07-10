@@ -18,10 +18,10 @@ main: {
           url: "https://currentuvindex.com/api/v1"
         }
       ]
+      summary: "Free Global Real-time UV Index API without API Key, providing current UV Index and 5 day Hourly UV Index Forecast for the whole world."
       termsOfService: "https://currentuvindex.com/api"
       title: "Current UV Index API"
       version: "1.1.0"
+      website: "https://currentuvindex.com"
     }
   }
-}
-
