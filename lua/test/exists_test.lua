@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- FreeUvIndex SDK exists test
 
 local sdk = require("free-uv-index_sdk")
 
