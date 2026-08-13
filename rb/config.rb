@@ -98,6 +98,7 @@ module FreeUvIndexConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/uvi",
                   "parts" => [

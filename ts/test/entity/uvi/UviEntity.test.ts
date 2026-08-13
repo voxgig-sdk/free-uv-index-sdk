@@ -26,8 +26,8 @@ import {
 describe('UviEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when FREEUVINDEX_TEST_LIVE=TRUE.
-  afterEach(liveDelay('FREEUVINDEX_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when FREE_UV_INDEX_TEST_LIVE=TRUE.
+  afterEach(liveDelay('FREE_UV_INDEX_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = FreeUvIndexSDK.test()
@@ -63,7 +63,7 @@ describe('UviEntity', async () => {
     const uvi_ref01_ent = client.Uvi()
     const uvi_ref01_match: any = {}
 
-    const uvi_ref01_list = await uvi_ref01_ent.list(uvi_ref01_match)
+    const uvi_ref01_list = (await uvi_ref01_ent.list(uvi_ref01_match)).map((e: any) => e.data())
 
 
   })

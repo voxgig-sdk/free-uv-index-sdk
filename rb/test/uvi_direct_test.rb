@@ -60,11 +60,11 @@ def uvi_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "FREEUVINDEX_TEST_UVI_ENTID" => {},
-    "FREEUVINDEX_TEST_LIVE" => "FALSE",
+    "FREE_UV_INDEX_TEST_UVI_ENTID" => {},
+    "FREE_UV_INDEX_TEST_LIVE" => "FALSE",
   })
 
-  live = env["FREEUVINDEX_TEST_LIVE"] == "TRUE"
+  live = env["FREE_UV_INDEX_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {

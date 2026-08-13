@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = FreeUvIndexSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = FreeUvIndexSDK.test({
+  entity: {
+    uvi: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const uvis = await client.Uvi().list()
-// uvis is an array of bare Uvi records populated with mock data
+// uvis is an array of Uvi entities, populated with mock data
+// — call uvis[0].data() for the record itself
 console.log(uvis)
 ```
 
@@ -110,7 +119,7 @@ import { FreeUvIndexSDK } from '@voxgig-sdk/free-uv-index'
 
 const client = new FreeUvIndexSDK()
 
-// List all uvis (returns Uvi[])
+// List all uvis (returns UviEntity[] — .data() for the record)
 const uvis = await client.Uvi().list()
 for (const uvi of uvis) {
   console.log(uvi)
@@ -343,6 +352,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://currentuvindex.com/api/v1](https://currentuvindex.com/api/v1)
 

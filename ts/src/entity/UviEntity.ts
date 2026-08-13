@@ -37,7 +37,7 @@ class UviEntity extends FreeUvIndexEntityBase<Uvi> {
 
 
 
-  async list(this: any, reqmatch?: UviListMatch, ctrl?: Control): Promise<Uvi[]> {
+  async list(this: any, reqmatch?: UviListMatch, ctrl?: Control): Promise<UviEntity[]> {
 
     const utility = this._utility
 

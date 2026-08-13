@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# FreeUvIndex SDK exists test
 
 import pytest
 from freeuvindex_sdk import FreeUvIndexSDK

@@ -35,7 +35,9 @@ const client = new FreeUvIndexSDK()
 
 ### 2. List uvi records
 
-`list()` resolves to an array of Uvi objects — iterate it directly:
+`list()` resolves to an array of Uvi ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const uvis = await client.Uvi().list()
@@ -120,7 +122,8 @@ Create a mock client for unit testing — no server required:
 const client = FreeUvIndexSDK.test()
 
 const uvi = await client.Uvi().list()
-// uvi is a bare entity populated with mock response data
+// uvi is the entity, populated with mock response data
+// — call uvi.data() for the record itself
 console.log(uvi)
 ```
 

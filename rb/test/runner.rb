@@ -23,8 +23,8 @@ module FreeUvIndexTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("FREEUVINDEX_TEST_LIVE")
-    override = getenv("FREEUVINDEX_TEST_OVERRIDE")
+    live = getenv("FREE_UV_INDEX_TEST_LIVE")
+    override = getenv("FREE_UV_INDEX_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module FreeUvIndexTestRunner
       end
     end
 
-    explain = getenv("FREEUVINDEX_TEST_EXPLAIN")
-    m["FREEUVINDEX_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("FREE_UV_INDEX_TEST_EXPLAIN")
+    m["FREE_UV_INDEX_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

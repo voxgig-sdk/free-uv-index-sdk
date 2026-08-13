@@ -16,11 +16,11 @@
 import pytest
 
 from freeuvindex_sdk import FreeUvIndexSDK
-from core.error import FreeUvIndexError
-from core.result import FreeUvIndexResult
-from core.response import FreeUvIndexResponse
-from core.spec import FreeUvIndexSpec
-from feature.base_feature import FreeUvIndexBaseFeature
+from freeuvindex_sdk.core.error import FreeUvIndexError
+from freeuvindex_sdk.core.result import FreeUvIndexResult
+from freeuvindex_sdk.core.response import FreeUvIndexResponse
+from freeuvindex_sdk.core.spec import FreeUvIndexSpec
+from freeuvindex_sdk.feature.base_feature import FreeUvIndexBaseFeature
 
 
 def _client():

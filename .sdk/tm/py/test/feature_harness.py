@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import FreeUvIndexControl
-from core.error import FreeUvIndexError
-from core.result import FreeUvIndexResult
-from core.spec import FreeUvIndexSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import FreeUvIndexControl
+from projectname_sdk.core.error import FreeUvIndexError
+from projectname_sdk.core.result import FreeUvIndexResult
+from projectname_sdk.core.spec import FreeUvIndexSpec
 
 
 # True when this SDK was generated with the named feature.
