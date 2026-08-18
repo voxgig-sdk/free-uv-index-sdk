@@ -1,7 +1,30 @@
 # FreeUvIndex SDK configuration
 
 
+_shared_config = None
+
+
+def shared_config():
+    """Return the process-wide config, built once on first use.
+
+    The SDK reads the config on every request and never writes to it, so one
+    instance is shared by every client rather than rebuilt per client.
+
+    The returned dict is shared: treat it as read-only. Callers that need to
+    mutate should use make_config, which always returns a fresh copy.
+    """
+    global _shared_config
+    if _shared_config is None:
+        _shared_config = make_config()
+    return _shared_config
+
+
 def make_config():
+    """Build a fresh, fully materialised config dict.
+
+    Every call rebuilds the whole structure, so prefer shared_config unless
+    you need a private copy you intend to mutate.
+    """
     return {
         "main": {
             "name": "FreeUvIndex",
@@ -26,46 +49,34 @@ def make_config():
       "uvi": {
         "fields": [
           {
-            "active": True,
             "name": "forecast",
             "req": True,
             "type": "`$ARRAY`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "history",
             "req": True,
             "type": "`$ARRAY`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "latitude",
             "req": True,
             "type": "`$NUMBER`",
-            "index$": 2,
           },
           {
-            "active": True,
             "name": "longitude",
             "req": True,
             "type": "`$NUMBER`",
-            "index$": 3,
           },
           {
-            "active": True,
             "name": "now",
             "req": True,
             "type": "`$OBJECT`",
-            "index$": 4,
           },
           {
-            "active": True,
             "name": "ok",
             "req": True,
             "type": "`$ANY`",
-            "index$": 5,
           },
         ],
         "name": "uvi",
@@ -75,11 +86,9 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "example": 40.6943,
                       "kind": "query",
                       "name": "latitude",
@@ -88,7 +97,6 @@ def make_config():
                       "type": "`$NUMBER`",
                     },
                     {
-                      "active": True,
                       "example": -73.9249,
                       "kind": "query",
                       "name": "longitude",
@@ -114,10 +122,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "list",
           },
         },
         "relations": {

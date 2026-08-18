@@ -1,5 +1,8 @@
 -- FreeUvIndex SDK configuration
 
+-- Build a fresh, fully materialised config table. Every call rebuilds the
+-- whole structure, so prefer require("config_shared") unless you need a
+-- private copy you intend to mutate.
 local function make_config()
   return {
     main = {
@@ -25,46 +28,34 @@ local function make_config()
       ["uvi"] = {
         ["fields"] = {
           {
-            ["active"] = true,
             ["name"] = "forecast",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 0,
           },
           {
-            ["active"] = true,
             ["name"] = "history",
             ["req"] = true,
             ["type"] = "`$ARRAY`",
-            ["index$"] = 1,
           },
           {
-            ["active"] = true,
             ["name"] = "latitude",
             ["req"] = true,
             ["type"] = "`$NUMBER`",
-            ["index$"] = 2,
           },
           {
-            ["active"] = true,
             ["name"] = "longitude",
             ["req"] = true,
             ["type"] = "`$NUMBER`",
-            ["index$"] = 3,
           },
           {
-            ["active"] = true,
             ["name"] = "now",
             ["req"] = true,
             ["type"] = "`$OBJECT`",
-            ["index$"] = 4,
           },
           {
-            ["active"] = true,
             ["name"] = "ok",
             ["req"] = true,
             ["type"] = "`$ANY`",
-            ["index$"] = 5,
           },
         },
         ["name"] = "uvi",
@@ -74,11 +65,9 @@ local function make_config()
             ["name"] = "list",
             ["points"] = {
               {
-                ["active"] = true,
                 ["args"] = {
                   ["query"] = {
                     {
-                      ["active"] = true,
                       ["example"] = 40.6943,
                       ["kind"] = "query",
                       ["name"] = "latitude",
@@ -87,7 +76,6 @@ local function make_config()
                       ["type"] = "`$NUMBER`",
                     },
                     {
-                      ["active"] = true,
                       ["example"] = -73.9249,
                       ["kind"] = "query",
                       ["name"] = "longitude",
@@ -113,10 +101,8 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["index$"] = 0,
               },
             },
-            ["key$"] = "list",
           },
         },
         ["relations"] = {

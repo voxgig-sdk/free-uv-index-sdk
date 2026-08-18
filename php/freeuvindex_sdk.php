@@ -40,7 +40,7 @@ class FreeUvIndexSDK
         $utility = new FreeUvIndexUtility();
         $this->_utility = $utility;
 
-        $config = FreeUvIndexConfig::make_config();
+        $config = FreeUvIndexConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

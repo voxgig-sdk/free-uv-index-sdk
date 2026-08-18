@@ -28,7 +28,7 @@ class FreeUvIndexSDK
     utility = FreeUvIndexUtility.new
     @_utility = utility
 
-    config = FreeUvIndexConfig.make_config
+    config = FreeUvIndexConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

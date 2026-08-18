@@ -40,7 +40,7 @@ class UviEntityTest extends TestCase
         $this->assertCount(3, $seen);
 
         // Inbound: streaming active -> yields each item from the feature.
-        $cfg = FreeUvIndexConfig::make_config();
+        $cfg = FreeUvIndexConfig::shared_config();
         if (isset($cfg["feature"]) && is_array($cfg["feature"]) && isset($cfg["feature"]["streaming"])) {
             $sdk = FreeUvIndexSDK::test($seed, ["feature" => ["streaming" => ["active" => true]]]);
             $got = [];

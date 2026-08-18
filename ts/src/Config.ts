@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'https://currentuvindex.com/api/v1',
+    base: "https://currentuvindex.com/api/v1",
 
     headers: {
       "content-type": "application/json"
@@ -55,46 +55,34 @@ class Config {
     "uvi": {
       "fields": [
         {
-          "active": true,
           "name": "forecast",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 0
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "history",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 1
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "latitude",
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 2
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "longitude",
           "req": true,
-          "type": "`$NUMBER`",
-          "index$": 3
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "now",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 4
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "ok",
           "req": true,
-          "type": "`$ANY`",
-          "index$": 5
+          "type": "`$ANY`"
         }
       ],
       "name": "uvi",
@@ -104,11 +92,9 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": 40.6943,
                     "kind": "query",
                     "name": "latitude",
@@ -117,7 +103,6 @@ class Config {
                     "type": "`$NUMBER`"
                   },
                   {
-                    "active": true,
                     "example": -73.9249,
                     "kind": "query",
                     "name": "longitude",
@@ -142,11 +127,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
