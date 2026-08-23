@@ -92,11 +92,11 @@ $uvi = $client->Uvi();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `forecast` | `array` | Yes |  |
-| `history` | `array` | Yes |  |
-| `latitude` | `float` | Yes |  |
-| `longitude` | `float` | Yes |  |
-| `now` | `array` | Yes |  |
+| `forecast` | `array` | Yes | Forecast for the next ~120 hours. |
+| `history` | `array` | Yes | Forecast for the past upto 24 hours. |
+| `latitude` | `float` | Yes | Same as the latitude passed in the request. |
+| `longitude` | `float` | Yes | Same as the longitude passed in the request. |
+| `now` | `array` | Yes | Forecast for the current hour. |
 | `ok` | `mixed` | Yes |  |
 
 ### Operations

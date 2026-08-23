@@ -33,6 +33,9 @@ class FreeUvIndexConfig
         return [
             "main" => [
                 "name" => "FreeUvIndex",
+                "slug" => "free-uv-index",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -56,26 +59,31 @@ class FreeUvIndexConfig
             [
               'name' => 'forecast',
               'req' => true,
+              'short' => 'Forecast for the next ~120 hours.',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'history',
               'req' => true,
+              'short' => 'Forecast for the past upto 24 hours.',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'latitude',
               'req' => true,
+              'short' => 'Same as the latitude passed in the request.',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'longitude',
               'req' => true,
+              'short' => 'Same as the longitude passed in the request.',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'now',
               'req' => true,
+              'short' => 'Forecast for the current hour.',
               'type' => '`$OBJECT`',
             ],
             [

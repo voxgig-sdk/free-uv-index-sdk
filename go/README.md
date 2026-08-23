@@ -6,7 +6,7 @@ The Golang SDK for the FreeUvIndex API — an entity-oriented client using stand
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Uvi(nil)` — each with the same small set of operations (`List`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -260,11 +260,11 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"forecast"` |  |
-| `"history"` |  |
-| `"latitude"` |  |
-| `"longitude"` |  |
-| `"now"` |  |
+| `"forecast"` | Forecast for the next ~120 hours. |
+| `"history"` | Forecast for the past upto 24 hours. |
+| `"latitude"` | Same as the latitude passed in the request. |
+| `"longitude"` | Same as the longitude passed in the request. |
+| `"now"` | Forecast for the current hour. |
 | `"ok"` |  |
 
 Operations: List.
@@ -290,11 +290,11 @@ Create an instance: `uvi := client.Uvi(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `forecast` | `[]any` |  |
-| `history` | `[]any` |  |
-| `latitude` | `float64` |  |
-| `longitude` | `float64` |  |
-| `now` | `map[string]any` |  |
+| `forecast` | `[]any` | Forecast for the next ~120 hours. |
+| `history` | `[]any` | Forecast for the past upto 24 hours. |
+| `latitude` | `float64` | Same as the latitude passed in the request. |
+| `longitude` | `float64` | Same as the longitude passed in the request. |
+| `now` | `map[string]any` | Forecast for the current hour. |
 | `ok` | `any` |  |
 
 #### Example: List

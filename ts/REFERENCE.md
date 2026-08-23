@@ -116,11 +116,11 @@ const uvi = client.Uvi()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `forecast` | `any[]` | Yes |  |
-| `history` | `any[]` | Yes |  |
-| `latitude` | `number` | Yes |  |
-| `longitude` | `number` | Yes |  |
-| `now` | `Record<string, any>` | Yes |  |
+| `forecast` | `any[]` | Yes | Forecast for the next ~120 hours. |
+| `history` | `any[]` | Yes | Forecast for the past upto 24 hours. |
+| `latitude` | `number` | Yes | Same as the latitude passed in the request. |
+| `longitude` | `number` | Yes | Same as the longitude passed in the request. |
+| `now` | `Record<string, any>` | Yes | Forecast for the current hour. |
 | `ok` | `any` | Yes |  |
 
 ### Operations

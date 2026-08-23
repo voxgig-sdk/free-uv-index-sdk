@@ -87,11 +87,11 @@ uvi = client.Uvi()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `forecast` | `list` | Yes |  |
-| `history` | `list` | Yes |  |
-| `latitude` | `float` | Yes |  |
-| `longitude` | `float` | Yes |  |
-| `now` | `dict` | Yes |  |
+| `forecast` | `list` | Yes | Forecast for the next ~120 hours. |
+| `history` | `list` | Yes | Forecast for the past upto 24 hours. |
+| `latitude` | `float` | Yes | Same as the latitude passed in the request. |
+| `longitude` | `float` | Yes | Same as the longitude passed in the request. |
+| `now` | `dict` | Yes | Forecast for the current hour. |
 | `ok` | `Any` | Yes |  |
 
 ### Operations

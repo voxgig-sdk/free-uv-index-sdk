@@ -93,11 +93,11 @@ uvi = client.Uvi
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `forecast` | `Array` | Yes |  |
-| `history` | `Array` | Yes |  |
-| `latitude` | `Float` | Yes |  |
-| `longitude` | `Float` | Yes |  |
-| `now` | `Hash` | Yes |  |
+| `forecast` | `Array` | Yes | Forecast for the next ~120 hours. |
+| `history` | `Array` | Yes | Forecast for the past upto 24 hours. |
+| `latitude` | `Float` | Yes | Same as the latitude passed in the request. |
+| `longitude` | `Float` | Yes | Same as the longitude passed in the request. |
+| `now` | `Hash` | Yes | Forecast for the current hour. |
 | `ok` | `Object` | Yes |  |
 
 ### Operations

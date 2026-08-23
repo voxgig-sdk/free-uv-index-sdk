@@ -231,11 +231,11 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `forecast` |  |
-| `history` |  |
-| `latitude` |  |
-| `longitude` |  |
-| `now` |  |
+| `forecast` | Forecast for the next ~120 hours. |
+| `history` | Forecast for the past upto 24 hours. |
+| `latitude` | Same as the latitude passed in the request. |
+| `longitude` | Same as the longitude passed in the request. |
+| `now` | Forecast for the current hour. |
 | `ok` |  |
 
 Operations: List.
@@ -261,11 +261,11 @@ Create an instance: `local uvi = client:Uvi(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `forecast` | `table` |  |
-| `history` | `table` |  |
-| `latitude` | `number` |  |
-| `longitude` | `number` |  |
-| `now` | `table` |  |
+| `forecast` | `table` | Forecast for the next ~120 hours. |
+| `history` | `table` | Forecast for the past upto 24 hours. |
+| `latitude` | `number` | Same as the latitude passed in the request. |
+| `longitude` | `number` | Same as the longitude passed in the request. |
+| `now` | `table` | Forecast for the current hour. |
 | `ok` | `any` |  |
 
 #### Example: List

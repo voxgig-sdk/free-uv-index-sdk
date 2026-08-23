@@ -36,30 +36,35 @@
               "active": true,
               "name": "forecast",
               "req": true,
+              "short": "Forecast for the next ~120 hours.",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "history",
               "req": true,
+              "short": "Forecast for the past upto 24 hours.",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "latitude",
               "req": true,
+              "short": "Same as the latitude passed in the request.",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "longitude",
               "req": true,
+              "short": "Same as the longitude passed in the request.",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "now",
               "req": true,
+              "short": "Forecast for the current hour.",
               "type": "`$OBJECT`"
             },
             {

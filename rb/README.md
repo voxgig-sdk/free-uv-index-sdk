@@ -237,11 +237,11 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `forecast` |  |
-| `history` |  |
-| `latitude` |  |
-| `longitude` |  |
-| `now` |  |
+| `forecast` | Forecast for the next ~120 hours. |
+| `history` | Forecast for the past upto 24 hours. |
+| `latitude` | Same as the latitude passed in the request. |
+| `longitude` | Same as the longitude passed in the request. |
+| `now` | Forecast for the current hour. |
 | `ok` |  |
 
 Operations: List.
@@ -267,11 +267,11 @@ Create an instance: `uvi = client.Uvi`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `forecast` | `Array` |  |
-| `history` | `Array` |  |
-| `latitude` | `Float` |  |
-| `longitude` | `Float` |  |
-| `now` | `Hash` |  |
+| `forecast` | `Array` | Forecast for the next ~120 hours. |
+| `history` | `Array` | Forecast for the past upto 24 hours. |
+| `latitude` | `Float` | Same as the latitude passed in the request. |
+| `longitude` | `Float` | Same as the longitude passed in the request. |
+| `now` | `Hash` | Forecast for the current hour. |
 | `ok` | `Object` |  |
 
 #### Example: List

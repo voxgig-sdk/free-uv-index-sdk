@@ -90,11 +90,11 @@ local uvi = client:Uvi(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `forecast` | `table` | Yes |  |
-| `history` | `table` | Yes |  |
-| `latitude` | `number` | Yes |  |
-| `longitude` | `number` | Yes |  |
-| `now` | `table` | Yes |  |
+| `forecast` | `table` | Yes | Forecast for the next ~120 hours. |
+| `history` | `table` | Yes | Forecast for the past upto 24 hours. |
+| `latitude` | `number` | Yes | Same as the latitude passed in the request. |
+| `longitude` | `number` | Yes | Same as the longitude passed in the request. |
+| `now` | `table` | Yes | Forecast for the current hour. |
 | `ok` | `any` | Yes |  |
 
 ### Operations

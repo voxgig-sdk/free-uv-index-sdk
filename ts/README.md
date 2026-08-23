@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -287,11 +287,11 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `forecast` |  |
-| `history` |  |
-| `latitude` |  |
-| `longitude` |  |
-| `now` |  |
+| `forecast` | Forecast for the next ~120 hours. |
+| `history` | Forecast for the past upto 24 hours. |
+| `latitude` | Same as the latitude passed in the request. |
+| `longitude` | Same as the longitude passed in the request. |
+| `now` | Forecast for the current hour. |
 | `ok` |  |
 
 Operations: list.
@@ -317,11 +317,11 @@ Create an instance: `const uvi = client.Uvi()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `forecast` | `any[]` |  |
-| `history` | `any[]` |  |
-| `latitude` | `number` |  |
-| `longitude` | `number` |  |
-| `now` | `Record<string, any>` |  |
+| `forecast` | `any[]` | Forecast for the next ~120 hours. |
+| `history` | `any[]` | Forecast for the past upto 24 hours. |
+| `latitude` | `number` | Same as the latitude passed in the request. |
+| `longitude` | `number` | Same as the longitude passed in the request. |
+| `now` | `Record<string, any>` | Forecast for the current hour. |
 | `ok` | `any` |  |
 
 #### Example: List

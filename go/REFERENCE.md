@@ -98,11 +98,11 @@ fmt.Println(uvi.GetName()) // "uvi"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `forecast` | `[]any` | Yes |  |
-| `history` | `[]any` | Yes |  |
-| `latitude` | `float64` | Yes |  |
-| `longitude` | `float64` | Yes |  |
-| `now` | `map[string]any` | Yes |  |
+| `forecast` | `[]any` | Yes | Forecast for the next ~120 hours. |
+| `history` | `[]any` | Yes | Forecast for the past upto 24 hours. |
+| `latitude` | `float64` | Yes | Same as the latitude passed in the request. |
+| `longitude` | `float64` | Yes | Same as the longitude passed in the request. |
+| `now` | `map[string]any` | Yes | Forecast for the current hour. |
 | `ok` | `any` | Yes |  |
 
 ### Operations

@@ -243,11 +243,11 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `forecast` |  |
-| `history` |  |
-| `latitude` |  |
-| `longitude` |  |
-| `now` |  |
+| `forecast` | Forecast for the next ~120 hours. |
+| `history` | Forecast for the past upto 24 hours. |
+| `latitude` | Same as the latitude passed in the request. |
+| `longitude` | Same as the longitude passed in the request. |
+| `now` | Forecast for the current hour. |
 | `ok` |  |
 
 Operations: List.
@@ -273,11 +273,11 @@ Create an instance: `uvi = client.Uvi()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `forecast` | `list` |  |
-| `history` | `list` |  |
-| `latitude` | `float` |  |
-| `longitude` | `float` |  |
-| `now` | `dict` |  |
+| `forecast` | `list` | Forecast for the next ~120 hours. |
+| `history` | `list` | Forecast for the past upto 24 hours. |
+| `latitude` | `float` | Same as the latitude passed in the request. |
+| `longitude` | `float` | Same as the longitude passed in the request. |
+| `now` | `dict` | Forecast for the current hour. |
 | `ok` | `Any` |  |
 
 #### Example: List

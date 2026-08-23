@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "FreeUvIndex",
+			"slug": "free-uv-index",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -34,26 +37,31 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "forecast",
 						"req": true,
+						"short": "Forecast for the next ~120 hours.",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "history",
 						"req": true,
+						"short": "Forecast for the past upto 24 hours.",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "latitude",
 						"req": true,
+						"short": "Same as the latitude passed in the request.",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "longitude",
 						"req": true,
+						"short": "Same as the longitude passed in the request.",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "now",
 						"req": true,
+						"short": "Forecast for the current hour.",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{

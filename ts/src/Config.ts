@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'FreeUvIndex',
+        slug: "free-uv-index",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -57,26 +68,31 @@ class Config {
         {
           "name": "forecast",
           "req": true,
+          "short": "Forecast for the next ~120 hours.",
           "type": "`$ARRAY`"
         },
         {
           "name": "history",
           "req": true,
+          "short": "Forecast for the past upto 24 hours.",
           "type": "`$ARRAY`"
         },
         {
           "name": "latitude",
           "req": true,
+          "short": "Same as the latitude passed in the request.",
           "type": "`$NUMBER`"
         },
         {
           "name": "longitude",
           "req": true,
+          "short": "Same as the longitude passed in the request.",
           "type": "`$NUMBER`"
         },
         {
           "name": "now",
           "req": true,
+          "short": "Forecast for the current hour.",
           "type": "`$OBJECT`"
         },
         {

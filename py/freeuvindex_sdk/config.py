@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "FreeUvIndex",
+            "slug": "free-uv-index",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -51,26 +54,31 @@ def make_config():
           {
             "name": "forecast",
             "req": True,
+            "short": "Forecast for the next ~120 hours.",
             "type": "`$ARRAY`",
           },
           {
             "name": "history",
             "req": True,
+            "short": "Forecast for the past upto 24 hours.",
             "type": "`$ARRAY`",
           },
           {
             "name": "latitude",
             "req": True,
+            "short": "Same as the latitude passed in the request.",
             "type": "`$NUMBER`",
           },
           {
             "name": "longitude",
             "req": True,
+            "short": "Same as the longitude passed in the request.",
             "type": "`$NUMBER`",
           },
           {
             "name": "now",
             "req": True,
+            "short": "Forecast for the current hour.",
             "type": "`$OBJECT`",
           },
           {
