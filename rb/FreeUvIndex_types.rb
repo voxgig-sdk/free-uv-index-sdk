@@ -39,30 +39,14 @@ Uvi = Struct.new(
 
 # Request payload for Uvi#list.
 #
-# @!attribute [rw] forecast
-#   @return [Array, nil]
-#
-# @!attribute [rw] history
-#   @return [Array, nil]
-#
 # @!attribute [rw] latitude
-#   @return [Float, nil]
+#   @return [Float]
 #
 # @!attribute [rw] longitude
-#   @return [Float, nil]
-#
-# @!attribute [rw] now
-#   @return [Hash, nil]
-#
-# @!attribute [rw] ok
-#   @return [Object, nil]
+#   @return [Float]
 UviListMatch = Struct.new(
-  :forecast,
-  :history,
   :latitude,
   :longitude,
-  :now,
-  :ok,
   keyword_init: true
 )
 

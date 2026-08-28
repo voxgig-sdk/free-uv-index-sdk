@@ -24,12 +24,8 @@ type Uvi struct {
 
 // UviListMatch is the typed request payload for Uvi.ListTyped.
 type UviListMatch struct {
-	Forecast *[]any `json:"forecast,omitempty"`
-	History *[]any `json:"history,omitempty"`
-	Latitude *float64 `json:"latitude,omitempty"`
-	Longitude *float64 `json:"longitude,omitempty"`
-	Now *map[string]any `json:"now,omitempty"`
-	Ok *any `json:"ok,omitempty"`
+	Latitude float64 `json:"latitude"`
+	Longitude float64 `json:"longitude"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

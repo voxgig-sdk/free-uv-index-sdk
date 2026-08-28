@@ -26,11 +26,7 @@ class Uvi
 /** Request payload for Uvi#list. */
 class UviListMatch
 {
-    public ?array $forecast = null;
-    public ?array $history = null;
-    public ?float $latitude = null;
-    public ?float $longitude = null;
-    public ?array $now = null;
-    public mixed $ok = null;
+    public float $latitude;
+    public float $longitude;
 }
 

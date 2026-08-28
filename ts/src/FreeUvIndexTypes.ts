@@ -15,11 +15,7 @@ export interface Uvi {
 }
 
 export interface UviListMatch {
-  forecast?: any[]
-  history?: any[]
-  latitude?: number
-  longitude?: number
-  now?: Record<string, any>
-  ok?: any
+  latitude: number
+  longitude: number
 }
 

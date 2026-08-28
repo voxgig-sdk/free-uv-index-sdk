@@ -25,10 +25,6 @@ class Uvi(TypedDict):
     ok: Any
 
 
-class UviListMatch(TypedDict, total=False):
-    forecast: list
-    history: list
+class UviListMatch(TypedDict):
     latitude: float
     longitude: float
-    now: dict
-    ok: Any
