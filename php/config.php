@@ -123,8 +123,10 @@ class FreeUvIndexConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/uvi',
-                  'parts' => [
-                    'uvi',
+                  'segments' => [
+                    [
+                      'lit' => 'uvi',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -135,6 +137,9 @@ class FreeUvIndexConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'uvi',
                   ],
                 ],
               ],

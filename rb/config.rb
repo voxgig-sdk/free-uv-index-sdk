@@ -109,8 +109,10 @@ module FreeUvIndexConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/uvi",
-                  "parts" => [
-                    "uvi",
+                  "segments" => [
+                    {
+                      "lit" => "uvi",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -122,6 +124,9 @@ module FreeUvIndexConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "uvi",
+                  ],
                 },
               ],
             },

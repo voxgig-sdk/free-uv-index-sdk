@@ -97,8 +97,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/uvi",
-                ["parts"] = {
-                  "uvi",
+                ["segments"] = {
+                  {
+                    ["lit"] = "uvi",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -109,6 +111,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "uvi",
                 },
               },
             },
