@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { FreeUvIndexSDK } from '@voxgig-sdk/free-uv-index'
+import { FreeUvIndexSDK } from '@voxgig-sdk/free-uv-index-sdk'
 
 const client = new FreeUvIndexSDK()
 ```
@@ -413,7 +413,7 @@ free-uv-index/
 Import the SDK from the package root:
 
 ```ts
-import { FreeUvIndexSDK } from '@voxgig-sdk/free-uv-index'
+import { FreeUvIndexSDK } from '@voxgig-sdk/free-uv-index-sdk'
 ```
 
 ### Entity state

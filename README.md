@@ -105,7 +105,7 @@ local results, err = client:Uvi():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/free-uv-index` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-uv-index-sdk/releases) |
+| TypeScript | `@voxgig-sdk/free-uv-index-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-uv-index-sdk/releases) |
 | Python | `voxgig-sdk-free-uv-index` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-uv-index-sdk/releases) |
 | PHP | `voxgig-sdk/free-uv-index` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-uv-index-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/free-uv-index-sdk/go` | `go get github.com/voxgig-sdk/free-uv-index-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Uvi():list()
 ### TypeScript
 
 ```ts
-import { FreeUvIndexSDK } from '@voxgig-sdk/free-uv-index'
+import { FreeUvIndexSDK } from '@voxgig-sdk/free-uv-index-sdk'
 
 const client = new FreeUvIndexSDK()
 
