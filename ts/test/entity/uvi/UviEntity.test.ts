@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { FreeUvIndexSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('UviEntity', async () => {
 
     const live = 'TRUE' === process.env.FREE_UV_INDEX_TEST_LIVE
     for (const op of ['list']) {
-      if (maybeSkipControl(t, 'entityOp', 'uvi.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'uvi.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set FREE_UV_INDEX_TEST_UVI_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"forecast","req":true,"short":"Forecast for the next ~120 hours.","type":"`$ARRAY`","index$":0},{"active":true,"name":"history","req":true,"short":"Forecast for the past upto 24 hours.","type":"`$ARRAY`","index$":1},{"active":true,"name":"latitude","req":true,"short":"Same as the latitude passed in the request.","type":"`$NUMBER`","index$":2},{"active":true,"name":"longitude","req":true,"short":"Same as the longitude passed in the request.","type":"`$NUMBER`","index$":3},{"active":true,"name":"now","req":true,"short":"Forecast for the current hour.","type":"`$OBJECT`","index$":4},{"active":true,"name":"ok","req":true,"type":"`$ANY`","index$":5}],"name":"uvi","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{"query":[{"active":true,"example":40.6943,"kind":"query","name":"latitude","orig":"latitude","reqd":true,"type":"`$NUMBER`","index$":0},{"active":true,"example":-73.9249,"kind":"query","name":"longitude","orig":"longitude","reqd":true,"type":"`$NUMBER`","index$":1}]},"contract":{"id":"GET /uvi","json":"{\"parameters\":[{\"description\":\"The latitude of the location for which you want the UV Index.\",\"example\":40.6943,\"in\":\"query\",\"name\":\"latitude\",\"required\":true,\"schema\":{\"maximum\":90,\"minimum\":-90,\"type\":\"number\"}},{\"description\":\"The longitude of the location for which you want the UV Index.\",\"example\":-73.9249,\"in\":\"query\",\"name\":\"longitude\",\"required\":true,\"schema\":{\"maximum\":180,\"minimum\":-180,\"type\":\"number\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"forecast\":{\"description\":\"Forecast for the next ~120 hours.\",\"items\":{\"properties\":{\"date\":{\"format\":\"date-time\",\"type\":\"string\"},\"uvi\":{\"examples\":[8.5],\"type\":\"number\"}},\"required\":[\"date\",\"uvi\"],\"type\":\"object\"},\"type\":\"array\"},\"history\":{\"description\":\"Forecast for the past upto 24 hours.\",\"items\":{\"properties\":{\"date\":{\"format\":\"date-time\",\"type\":\"string\"},\"uvi\":{\"examples\":[7.5],\"type\":\"number\"}},\"required\":[\"date\",\"uvi\"],\"type\":\"object\"},\"type\":\"array\"},\"latitude\":{\"description\":\"Same as the latitude passed in the request.\",\"examples\":[40.6943],\"type\":\"number\"},\"longitude\":{\"description\":\"Same as the longitude passed in the request.\",\"examples\":[-73.9249],\"type\":\"number\"},\"now\":{\"description\":\"Forecast for the current hour.\",\"properties\":{\"date\":{\"format\":\"date-time\",\"type\":\"string\"},\"uvi\":{\"examples\":[6.7],\"type\":\"number\"}},\"required\":[\"date\",\"uvi\"],\"type\":\"object\"},\"ok\":{\"enum\":[true]}},\"required\":[\"ok\",\"latitude\",\"longitude\",\"now\",\"forecast\",\"history\"],\"type\":\"object\"}}},\"description\":\"Successful operation\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"description\":\"Error message.\",\"examples\":[\"missing latitude\",\"missing longitude\",\"invalid latitude\",\"invalid longitude\"],\"type\":\"string\"},\"ok\":{\"enum\":[false]}},\"type\":\"object\"}}},\"description\":\"Invalid latitude or longitude\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/uvi","segments":[{"lit":"uvi"}],"select":{"exist":["latitude","longitude"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"uvi","name__orig":"uvi","Name":"Uvi","name_":"uvi","name-":"uvi","NAME":"UVI","index$":0}, {"active":true,"entity":"uvi","key$":"BasicUviFlow","kind":"basic","name":"BasicUviFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"uvi_ref01"}}],"index$":0}]}, 'Uvi')
     }
     const client = setup.client
     const struct = setup.struct
@@ -109,13 +108,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['FREE_UV_INDEX_TEST_UVI_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'FREE_UV_INDEX_TEST_UVI_ENTID': idmap,
     'FREE_UV_INDEX_TEST_LIVE': 'FALSE',
@@ -126,7 +118,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.FREE_UV_INDEX_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['FREE_UV_INDEX_TEST_UVI_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new FreeUvIndexSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -138,7 +136,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -151,7 +150,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.FREE_UV_INDEX_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

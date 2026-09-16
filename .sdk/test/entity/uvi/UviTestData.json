@@ -38,5 +38,174 @@
         "ok": "sf5"
       }
     }
+  },
+  "requests": {
+    "GET /uvi": {
+      "provenance": "operation-contract",
+      "contract": {
+        "parameters": [
+          {
+            "description": "The latitude of the location for which you want the UV Index.",
+            "example": 40.6943,
+            "in": "query",
+            "name": "latitude",
+            "required": true,
+            "schema": {
+              "maximum": 90,
+              "minimum": -90,
+              "type": "number"
+            }
+          },
+          {
+            "description": "The longitude of the location for which you want the UV Index.",
+            "example": -73.9249,
+            "in": "query",
+            "name": "longitude",
+            "required": true,
+            "schema": {
+              "maximum": 180,
+              "minimum": -180,
+              "type": "number"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "forecast": {
+                      "description": "Forecast for the next ~120 hours.",
+                      "items": {
+                        "properties": {
+                          "date": {
+                            "format": "date-time",
+                            "type": "string"
+                          },
+                          "uvi": {
+                            "examples": [
+                              8.5
+                            ],
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "date",
+                          "uvi"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "history": {
+                      "description": "Forecast for the past upto 24 hours.",
+                      "items": {
+                        "properties": {
+                          "date": {
+                            "format": "date-time",
+                            "type": "string"
+                          },
+                          "uvi": {
+                            "examples": [
+                              7.5
+                            ],
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "date",
+                          "uvi"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "latitude": {
+                      "description": "Same as the latitude passed in the request.",
+                      "examples": [
+                        40.6943
+                      ],
+                      "type": "number"
+                    },
+                    "longitude": {
+                      "description": "Same as the longitude passed in the request.",
+                      "examples": [
+                        -73.9249
+                      ],
+                      "type": "number"
+                    },
+                    "now": {
+                      "description": "Forecast for the current hour.",
+                      "properties": {
+                        "date": {
+                          "format": "date-time",
+                          "type": "string"
+                        },
+                        "uvi": {
+                          "examples": [
+                            6.7
+                          ],
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "date",
+                        "uvi"
+                      ],
+                      "type": "object"
+                    },
+                    "ok": {
+                      "enum": [
+                        true
+                      ]
+                    }
+                  },
+                  "required": [
+                    "ok",
+                    "latitude",
+                    "longitude",
+                    "now",
+                    "forecast",
+                    "history"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful operation"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "description": "Error message.",
+                      "examples": [
+                        "missing latitude",
+                        "missing longitude",
+                        "invalid latitude",
+                        "invalid longitude"
+                      ],
+                      "type": "string"
+                    },
+                    "ok": {
+                      "enum": [
+                        false
+                      ]
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Invalid latitude or longitude"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

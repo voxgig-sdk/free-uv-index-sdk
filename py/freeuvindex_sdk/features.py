@@ -1,12 +1,18 @@
 # FreeUvIndex SDK feature factory
 
 from freeuvindex_sdk.feature.base_feature import FreeUvIndexBaseFeature
+from freeuvindex_sdk.feature.ratelimit_feature import FreeUvIndexRatelimitFeature
+from freeuvindex_sdk.feature.retry_feature import FreeUvIndexRetryFeature
 from freeuvindex_sdk.feature.test_feature import FreeUvIndexTestFeature
+from freeuvindex_sdk.feature.timeout_feature import FreeUvIndexTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: FreeUvIndexBaseFeature(),
+    "ratelimit": lambda: FreeUvIndexRatelimitFeature(),
+    "retry": lambda: FreeUvIndexRetryFeature(),
     "test": lambda: FreeUvIndexTestFeature(),
+    "timeout": lambda: FreeUvIndexTimeoutFeature(),
 }
 
 
