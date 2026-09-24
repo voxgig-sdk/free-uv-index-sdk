@@ -1,0 +1,106 @@
+# Entity: uvi
+
+main: kit: entity: uvi: {
+
+  alias: field: {}
+
+  fields: {
+    forecast: {
+      h: "Forecast"
+      n: "forecast"
+      r: true
+      sh: "Forecast for the next ~120 hours."
+      t: "`$ARRAY`"
+    }
+    history: {
+      h: "History"
+      n: "history"
+      r: true
+      sh: "Forecast for the past upto 24 hours."
+      t: "`$ARRAY`"
+    }
+    latitude: {
+      h: "Latitude"
+      n: "latitude"
+      r: true
+      sh: "Same as the latitude passed in the request."
+      t: "`$NUMBER`"
+    }
+    longitude: {
+      h: "Longitude"
+      n: "longitude"
+      r: true
+      sh: "Same as the longitude passed in the request."
+      t: "`$NUMBER`"
+    }
+    now: {
+      h: "Now"
+      n: "now"
+      r: true
+      sh: "Forecast for the current hour."
+      t: "`$OBJECT`"
+    }
+    ok: {
+      h: "Ok"
+      n: "ok"
+      r: true
+      t: "`$ANY`"
+    }
+  }
+
+  name: "uvi"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /uvi"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 40.6943
+                k: "query"
+                n: "latitude"
+                or: "latitude"
+                r: true
+                t: "`$NUMBER`"
+              }
+              {
+                ex: -73.9249
+                k: "query"
+                n: "longitude"
+                or: "longitude"
+                r: true
+                t: "`$NUMBER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/uvi"
+          q: {
+            exist: [
+              "latitude"
+              "longitude"
+            ]
+          }
+          s: [
+            {
+              lit: "uvi"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

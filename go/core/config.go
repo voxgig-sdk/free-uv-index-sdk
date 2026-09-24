@@ -91,38 +91,44 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "forecast",
+						"title": "Forecast",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "Forecast for the next ~120 hours.",
-						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "history",
+						"title": "History",
+						"type": "`$ARRAY`",
 						"req": true,
 						"short": "Forecast for the past upto 24 hours.",
-						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "latitude",
+						"title": "Latitude",
+						"type": "`$NUMBER`",
 						"req": true,
 						"short": "Same as the latitude passed in the request.",
-						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "longitude",
+						"title": "Longitude",
+						"type": "`$NUMBER`",
 						"req": true,
 						"short": "Same as the longitude passed in the request.",
-						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "now",
+						"title": "Now",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Forecast for the current hour.",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "ok",
-						"req": true,
+						"title": "Ok",
 						"type": "`$ANY`",
+						"req": true,
 					},
 				},
 				"name": "uvi",
@@ -132,26 +138,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": 40.6943,
-											"kind": "query",
-											"name": "latitude",
-											"orig": "latitude",
-											"reqd": true,
-											"type": "`$NUMBER`",
-										},
-										map[string]any{
-											"example": -73.9249,
-											"kind": "query",
-											"name": "longitude",
-											"orig": "longitude",
-											"reqd": true,
-											"type": "`$NUMBER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/uvi",
@@ -160,18 +146,39 @@ func MakeConfig() map[string]any {
 										"lit": "uvi",
 									},
 								},
+								"parts": []any{
+									"uvi",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "latitude",
+											"orig": "latitude",
+											"type": "`$NUMBER`",
+											"kind": "query",
+											"reqd": true,
+											"example": 40.6943,
+										},
+										map[string]any{
+											"name": "longitude",
+											"orig": "longitude",
+											"type": "`$NUMBER`",
+											"kind": "query",
+											"reqd": true,
+											"example": -73.9249,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"latitude",
 										"longitude",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"uvi",
 								},
 							},
 						},

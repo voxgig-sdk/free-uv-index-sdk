@@ -19,7 +19,6 @@ import type {
   UviListMatch,
 } from '../FreeUvIndexTypes'
 
-// TODO: needs Entity superclass
 class UviEntity extends FreeUvIndexEntityBase<Uvi> {
 
   constructor(client: FreeUvIndexSDK, entopts: any) {

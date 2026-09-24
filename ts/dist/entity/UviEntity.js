@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UviEntity = void 0;
 const FreeUvIndexEntityBase_1 = require("../FreeUvIndexEntityBase");
-// TODO: needs Entity superclass
 class UviEntity extends FreeUvIndexEntityBase_1.FreeUvIndexEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

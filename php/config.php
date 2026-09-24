@@ -113,38 +113,44 @@ class FreeUvIndexConfig
           'fields' => [
             [
               'name' => 'forecast',
+              'title' => 'Forecast',
+              'type' => '`$ARRAY`',
               'req' => true,
               'short' => 'Forecast for the next ~120 hours.',
-              'type' => '`$ARRAY`',
             ],
             [
               'name' => 'history',
+              'title' => 'History',
+              'type' => '`$ARRAY`',
               'req' => true,
               'short' => 'Forecast for the past upto 24 hours.',
-              'type' => '`$ARRAY`',
             ],
             [
               'name' => 'latitude',
+              'title' => 'Latitude',
+              'type' => '`$NUMBER`',
               'req' => true,
               'short' => 'Same as the latitude passed in the request.',
-              'type' => '`$NUMBER`',
             ],
             [
               'name' => 'longitude',
+              'title' => 'Longitude',
+              'type' => '`$NUMBER`',
               'req' => true,
               'short' => 'Same as the longitude passed in the request.',
-              'type' => '`$NUMBER`',
             ],
             [
               'name' => 'now',
+              'title' => 'Now',
+              'type' => '`$OBJECT`',
               'req' => true,
               'short' => 'Forecast for the current hour.',
-              'type' => '`$OBJECT`',
             ],
             [
               'name' => 'ok',
-              'req' => true,
+              'title' => 'Ok',
               'type' => '`$ANY`',
+              'req' => true,
             ],
           ],
           'name' => 'uvi',
@@ -154,26 +160,6 @@ class FreeUvIndexConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'example' => 40.6943,
-                        'kind' => 'query',
-                        'name' => 'latitude',
-                        'orig' => 'latitude',
-                        'reqd' => true,
-                        'type' => '`$NUMBER`',
-                      ],
-                      [
-                        'example' => -73.9249,
-                        'kind' => 'query',
-                        'name' => 'longitude',
-                        'orig' => 'longitude',
-                        'reqd' => true,
-                        'type' => '`$NUMBER`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/uvi',
@@ -182,18 +168,39 @@ class FreeUvIndexConfig
                       'lit' => 'uvi',
                     ],
                   ],
+                  'parts' => [
+                    'uvi',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'latitude',
+                        'orig' => 'latitude',
+                        'type' => '`$NUMBER`',
+                        'kind' => 'query',
+                        'reqd' => true,
+                        'example' => 40.6943,
+                      ],
+                      [
+                        'name' => 'longitude',
+                        'orig' => 'longitude',
+                        'type' => '`$NUMBER`',
+                        'kind' => 'query',
+                        'reqd' => true,
+                        'example' => -73.9249,
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'latitude',
                       'longitude',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'uvi',
                   ],
                 ],
               ],

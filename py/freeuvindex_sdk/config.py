@@ -116,38 +116,44 @@ def make_config():
         "fields": [
           {
             "name": "forecast",
+            "title": "Forecast",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "Forecast for the next ~120 hours.",
-            "type": "`$ARRAY`",
           },
           {
             "name": "history",
+            "title": "History",
+            "type": "`$ARRAY`",
             "req": True,
             "short": "Forecast for the past upto 24 hours.",
-            "type": "`$ARRAY`",
           },
           {
             "name": "latitude",
+            "title": "Latitude",
+            "type": "`$NUMBER`",
             "req": True,
             "short": "Same as the latitude passed in the request.",
-            "type": "`$NUMBER`",
           },
           {
             "name": "longitude",
+            "title": "Longitude",
+            "type": "`$NUMBER`",
             "req": True,
             "short": "Same as the longitude passed in the request.",
-            "type": "`$NUMBER`",
           },
           {
             "name": "now",
+            "title": "Now",
+            "type": "`$OBJECT`",
             "req": True,
             "short": "Forecast for the current hour.",
-            "type": "`$OBJECT`",
           },
           {
             "name": "ok",
-            "req": True,
+            "title": "Ok",
             "type": "`$ANY`",
+            "req": True,
           },
         ],
         "name": "uvi",
@@ -157,26 +163,6 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "example": 40.6943,
-                      "kind": "query",
-                      "name": "latitude",
-                      "orig": "latitude",
-                      "reqd": True,
-                      "type": "`$NUMBER`",
-                    },
-                    {
-                      "example": -73.9249,
-                      "kind": "query",
-                      "name": "longitude",
-                      "orig": "longitude",
-                      "reqd": True,
-                      "type": "`$NUMBER`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/uvi",
@@ -185,19 +171,40 @@ def make_config():
                     "lit": "uvi",
                   },
                 ],
+                "parts": [
+                  "uvi",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "latitude",
+                      "orig": "latitude",
+                      "type": "`$NUMBER`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": 40.6943,
+                    },
+                    {
+                      "name": "longitude",
+                      "orig": "longitude",
+                      "type": "`$NUMBER`",
+                      "kind": "query",
+                      "reqd": True,
+                      "example": -73.9249,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "latitude",
                     "longitude",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "uvi",
-                ],
               },
             ],
           },

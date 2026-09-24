@@ -43,7 +43,7 @@ local uvis, err = client:Uvi():list()
 if err then error(err) end
 
 for _, item in ipairs(uvis) do
-  print(item["forecast"])
+  print(item)
 end
 ```
 

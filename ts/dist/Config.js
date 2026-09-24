@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -114,38 +107,44 @@ class Config {
             "fields": [
                 {
                     "name": "forecast",
+                    "title": "Forecast",
+                    "type": "`$ARRAY`",
                     "req": true,
-                    "short": "Forecast for the next ~120 hours.",
-                    "type": "`$ARRAY`"
+                    "short": "Forecast for the next ~120 hours."
                 },
                 {
                     "name": "history",
+                    "title": "History",
+                    "type": "`$ARRAY`",
                     "req": true,
-                    "short": "Forecast for the past upto 24 hours.",
-                    "type": "`$ARRAY`"
+                    "short": "Forecast for the past upto 24 hours."
                 },
                 {
                     "name": "latitude",
+                    "title": "Latitude",
+                    "type": "`$NUMBER`",
                     "req": true,
-                    "short": "Same as the latitude passed in the request.",
-                    "type": "`$NUMBER`"
+                    "short": "Same as the latitude passed in the request."
                 },
                 {
                     "name": "longitude",
+                    "title": "Longitude",
+                    "type": "`$NUMBER`",
                     "req": true,
-                    "short": "Same as the longitude passed in the request.",
-                    "type": "`$NUMBER`"
+                    "short": "Same as the longitude passed in the request."
                 },
                 {
                     "name": "now",
+                    "title": "Now",
+                    "type": "`$OBJECT`",
                     "req": true,
-                    "short": "Forecast for the current hour.",
-                    "type": "`$OBJECT`"
+                    "short": "Forecast for the current hour."
                 },
                 {
                     "name": "ok",
-                    "req": true,
-                    "type": "`$ANY`"
+                    "title": "Ok",
+                    "type": "`$ANY`",
+                    "req": true
                 }
             ],
             "name": "uvi",
@@ -155,26 +154,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": 40.6943,
-                                        "kind": "query",
-                                        "name": "latitude",
-                                        "orig": "latitude",
-                                        "reqd": true,
-                                        "type": "`$NUMBER`"
-                                    },
-                                    {
-                                        "example": -73.9249,
-                                        "kind": "query",
-                                        "name": "longitude",
-                                        "orig": "longitude",
-                                        "reqd": true,
-                                        "type": "`$NUMBER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/uvi",
@@ -183,19 +162,40 @@ class Config {
                                     "lit": "uvi"
                                 }
                             ],
+                            "parts": [
+                                "uvi"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "latitude",
+                                        "orig": "latitude",
+                                        "type": "`$NUMBER`",
+                                        "kind": "query",
+                                        "reqd": true,
+                                        "example": 40.6943
+                                    },
+                                    {
+                                        "name": "longitude",
+                                        "orig": "longitude",
+                                        "type": "`$NUMBER`",
+                                        "kind": "query",
+                                        "reqd": true,
+                                        "example": -73.9249
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "latitude",
                                     "longitude"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "uvi"
-                            ]
+                            }
                         }
                     ]
                 }
