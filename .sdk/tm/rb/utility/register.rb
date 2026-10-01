@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 FreeUvIndexUtility.registrar = ->(u) {
   u.clean = FreeUvIndexUtilities::Clean
+  u.clean_add = FreeUvIndexUtilities::CleanAdd
+  u.clean_explain = FreeUvIndexUtilities::CleanExplain
   u.done = FreeUvIndexUtilities::Done
   u.make_error = FreeUvIndexUtilities::MakeError
   u.feature_add = FreeUvIndexUtilities::FeatureAdd

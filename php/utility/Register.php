@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 FreeUvIndexUtility::setRegistrar(function (FreeUvIndexUtility $u): void {
     $u->clean = [FreeUvIndexClean::class, 'call'];
+    $u->clean_add = [FreeUvIndexClean::class, 'add'];
+    $u->clean_explain = [FreeUvIndexDone::class, 'clean_explain'];
     $u->done = [FreeUvIndexDone::class, 'call'];
     $u->make_error = [FreeUvIndexMakeError::class, 'call'];
     $u->feature_add = [FreeUvIndexFeatureAdd::class, 'call'];
