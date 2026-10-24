@@ -67,6 +67,7 @@ local function make_config()
         },
         ["optspec"] = {
           ["clearTimer"] = "`$FUNCTION`",
+          ["now"] = "`$FUNCTION`",
           ["setTimer"] = "`$FUNCTION`",
         },
         ["strict"] = false,
@@ -159,6 +160,7 @@ local function make_config()
                       ["kind"] = "query",
                       ["reqd"] = true,
                       ["example"] = 40.6943,
+                      ["field"] = true,
                     },
                     {
                       ["name"] = "longitude",
@@ -167,6 +169,7 @@ local function make_config()
                       ["kind"] = "query",
                       ["reqd"] = true,
                       ["example"] = -73.9249,
+                      ["field"] = true,
                     },
                   },
                 },
@@ -175,6 +178,10 @@ local function make_config()
                     "latitude",
                     "longitude",
                   },
+                },
+                ["response"] = {
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
             },

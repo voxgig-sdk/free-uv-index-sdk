@@ -96,6 +96,7 @@ def make_config():
         },
         "optspec": {
           "clearTimer": "`$FUNCTION`",
+          "now": "`$FUNCTION`",
           "setTimer": "`$FUNCTION`",
         },
         "strict": False,
@@ -188,6 +189,7 @@ def make_config():
                       "kind": "query",
                       "reqd": True,
                       "example": 40.6943,
+                      "field": True,
                     },
                     {
                       "name": "longitude",
@@ -196,6 +198,7 @@ def make_config():
                       "kind": "query",
                       "reqd": True,
                       "example": -73.9249,
+                      "field": True,
                     },
                   ],
                 },
@@ -204,6 +207,10 @@ def make_config():
                     "latitude",
                     "longitude",
                   ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],

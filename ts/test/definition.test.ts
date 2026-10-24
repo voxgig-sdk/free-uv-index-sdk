@@ -20,9 +20,23 @@ const PLAN: any[] = [
       "longitude": -73.9249
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "latitude",
       "longitude"
+    ],
+    "queryArgs": [
+      {
+        "name": "latitude",
+        "wire": "latitude"
+      },
+      {
+        "name": "longitude",
+        "wire": "longitude"
+      }
     ],
     "auth": null,
     "status": 200,

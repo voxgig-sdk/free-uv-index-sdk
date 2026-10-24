@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/free-uv-index-sdk/releases)), or
+GitHub release tag (`rb/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/free-uv-index-sdk/tags)), or
 from a clone:
 
 ```bash
@@ -43,10 +43,11 @@ client = FreeUvIndexSDK.new
 
 ```ruby
 begin
-  # list returns an Array of Uvi records — iterate directly.
-  uvis = client.Uvi.list
+  # list returns an Array of Uvi entities, one per record; data_get reads the record.
+  uvis = client.Uvi.list({ "latitude" => 1, "longitude" => 1 })
   uvis.each do |item|
-    puts "#{item["forecast"]}"
+    record = item.data_get
+    puts "#{record["forecast"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -60,7 +61,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  uvis = client.Uvi.list()
+  uvis = client.Uvi.list({ "latitude" => 1, "longitude" => 1 })
 rescue => err
   warn "list failed: #{err}"
 end
@@ -128,10 +129,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = FreeUvIndexSDK.test
 
-# Entity ops return the ENTITY (raises on error);
-# call data_get for the mock record.
-uvi = client.Uvi.list()
-puts uvi
+# list returns an Array of Uvi entities, one per mock record (raises on
+# error); data_get reads each record.
+uvis = client.Uvi.list({ "latitude" => 1, "longitude" => 1 })
+uvis.each { |item| puts item.data_get }
 ```
 
 ### Use a custom fetch function
@@ -215,7 +216,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all), one per record. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -225,9 +226,10 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the result data directly. On failure they
-raise a `FreeUvIndexError` (a `StandardError` subclass), so wrap
-calls in `begin`/`rescue` where you need to handle errors.
+Entity operations return the entity, and `list` an `Array` of entities, one
+per record; an entity's `data_get` reads its record. On failure they raise a
+`FreeUvIndexError` (a `StandardError` subclass), so wrap calls in
+`begin`/`rescue` where you need to handle errors.
 
 The `direct` escape hatch is the exception: it never raises and instead
 returns a result `Hash` with these keys:
@@ -286,8 +288,9 @@ Create an instance: `uvi = client.Uvi`
 #### Example: List
 
 ```ruby
-# list returns an Array of Uvi records (raises on error).
-uvis = client.Uvi.list
+# list returns an Array of Uvi entities, one per record (raises on error).
+uvis = client.Uvi.list({ "latitude" => 1, "longitude" => 1 })
+uvis.each { |item| puts item.data_get }
 ```
 
 ## Features
@@ -453,7 +456,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 uvi = client.Uvi
-uvi.list()
+uvi.list({ "latitude" => 1, "longitude" => 1 })
 
 # uvi.data_get now returns the uvi data from the last list
 # uvi.match_get returns the last match criteria

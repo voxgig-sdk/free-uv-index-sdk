@@ -93,6 +93,7 @@ class FreeUvIndexConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -185,6 +186,7 @@ class FreeUvIndexConfig
                         'kind' => 'query',
                         'reqd' => true,
                         'example' => 40.6943,
+                        'field' => true,
                       ],
                       [
                         'name' => 'longitude',
@@ -193,6 +195,7 @@ class FreeUvIndexConfig
                         'kind' => 'query',
                         'reqd' => true,
                         'example' => -73.9249,
+                        'field' => true,
                       ],
                     ],
                   ],
@@ -201,6 +204,10 @@ class FreeUvIndexConfig
                       'latitude',
                       'longitude',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],

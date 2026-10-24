@@ -71,6 +71,7 @@ func MakeConfig() map[string]any {
 				},
 				"optspec": map[string]any{
 					"clearTimer": "`$FUNCTION`",
+					"now": "`$FUNCTION`",
 					"setTimer": "`$FUNCTION`",
 				},
 				"strict": false,
@@ -163,6 +164,7 @@ func MakeConfig() map[string]any {
 											"kind": "query",
 											"reqd": true,
 											"example": 40.6943,
+											"field": true,
 										},
 										map[string]any{
 											"name": "longitude",
@@ -171,6 +173,7 @@ func MakeConfig() map[string]any {
 											"kind": "query",
 											"reqd": true,
 											"example": -73.9249,
+											"field": true,
 										},
 									},
 								},
@@ -179,6 +182,10 @@ func MakeConfig() map[string]any {
 										"latitude",
 										"longitude",
 									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},

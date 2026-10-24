@@ -3,5 +3,16 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Forecast for the current hour.",
+      "Forecast for the next ~120 hours.",
+      "Forecast for the past upto 24 hours.",
+      "Free Global Real-time UV Index API without API Key, providing current UV Index and 5 day Hourly UV Index Forecast for the whole world.",
+      "Same as the latitude passed in the request.",
+      "Same as the longitude passed in the request.",
+      "Successful operation"
+    ]
+  }
 }
